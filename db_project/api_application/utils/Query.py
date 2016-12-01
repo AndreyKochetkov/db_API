@@ -1,5 +1,5 @@
 class Query:
-    INSERT = 'INSERT {table} ({columns}) VALUES ({values});'
+    INSERT = 'INSERT {} ({}) VALUES ({});'
     DELETE = 'DELETE FROM {table} WHERE {clause};'
     SELECT = 'SELECT {columns} FROM {table} '
     JOIN = 'JOIN {table} ON {clause} '

@@ -3,8 +3,10 @@ import json
 
 from django.db import connection
 from django.http import HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 from api_application.utils.Query import Query
 
+@csrf_exempt
 def create(request):
     print("поехали")
     if request.method == "POST":
@@ -18,9 +20,17 @@ def create(request):
             username = data["username"]
             about = data["about"]
             name = data["name"]
-            email = datap["email"]
+            email = data["email"]
         except:
             cursor.close()
             return HttpResponseRedirect('/allbadagain')
+        #query = Query()
+        #query =
+        query = "INSERT INTO {} ({}) VALUES ({});".format('user', 'name, email, username, about',
+                            '\"{}\", \"{}\", \"{}\", \"{}\"'.format(name, email, username, about))
 
-
+        print(query)
+        cursor.execute(query)
+        cursor.close()
+        return HttpResponseRedirect('/good')
+    return HttpResponseRedirect('/oops')
