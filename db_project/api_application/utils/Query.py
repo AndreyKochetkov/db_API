@@ -1,0 +1,12 @@
+class Query:
+    INSERT = 'INSERT {table} ({columns}) VALUES ({values});'
+    DELETE = 'DELETE FROM {table} WHERE {clause};'
+    SELECT = 'SELECT {columns} FROM {table} '
+    JOIN = 'JOIN {table} ON {clause} '
+    LEFT_JOIN = 'LEFT JOIN {table} ON {clause} '
+    WHERE = 'WHERE {clause} '
+    AND_CLAUSE = 'AND {clause} '
+    ORDER_BY = 'ORDER BY {column} {type} '
+    GROUP_BY = 'GROUP BY {column} '
+    HAVING = 'HAVING {clause} '
+    LIMIT = 'LIMIT {count} '
