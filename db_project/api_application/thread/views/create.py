@@ -6,18 +6,22 @@ from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Query import Query
 from api_application.utils.Code import Code
-from api_application.user.utils import get_user_by_email
-from api_application.forum.utils import get_forum_by_short_name
+from api_application.user.utils import get_id_user_by_email
+from api_application.forum.utils import get_id_forum_by_short_name
 from api_application.utils.validate import validate_date
 from api_application.thread.utils import remove_thread
+from api_application.utils.logger import get_logger
 
 
 @csrf_exempt
 def create(request):
+    logger = get_logger()
+    logger.debug("/thread/create: \n")
     cursor = connection.cursor()
     code = Code()
     try:
         request_data = loads(request.body)
+
         forum = request_data["forum"]
         title = request_data["title"]
         isClosed = bool(request_data["isClosed"])  # validate
@@ -29,11 +33,11 @@ def create(request):
         cursor.close()
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
-    ###########  user verification ##############
+    ########### user verification ##############
 
     try:
-        query = get_user_by_email(user)
-        print(query.get())
+        query = get_id_user_by_email(user)
+        logger.debug("get_user_by_email: " + query.get())
         cursor.execute(query.get())
     except:
         cursor.close()
@@ -49,7 +53,8 @@ def create(request):
     ###########  forum verification ##############
 
     try:
-        query = get_forum_by_short_name(forum)
+        query = get_id_forum_by_short_name(forum)
+        logger.debug("get_forum_by_short_name: " + query.get())
         cursor.execute(query.get())
 
     except:
@@ -92,7 +97,7 @@ def create(request):
     try:
         query.clear()
         query.add_insert("thread", request_data.items())
-        print(query.get())
+        logger.debug(query.get())
         cursor.execute(query.get())
 
     except:
@@ -115,7 +120,9 @@ def create(request):
             is_deleted = bool(is_deleted)
             try:
                 query = remove_thread(forum_id, is_deleted)
+                logger.debug("\n\nremove_thread: " + query.get())
                 cursor.execute(query.get())
+
             except:
                 cursor.close()
                 return HttpResponse(dumps({'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}))

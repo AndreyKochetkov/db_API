@@ -1,9 +1,10 @@
 from api_application.utils.Query import Query
 
 
-def remove_thread(forum_id, isDel):
+def remove_thread(forum_id, is_del):
     query = Query()
-    query.add_update("thread", "isDeleted", isDel)
+    data = [("isDeleted", is_del)]
+    query.add_update("thread", data)
     query.add_where_condition("id = \"{}\"".format(forum_id))
     return query
 

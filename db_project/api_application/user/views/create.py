@@ -6,67 +6,62 @@ from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Query import Query
 from api_application.utils.Code import Code
+from api_application.utils.logger import get_logger
 
 
 @csrf_exempt
 def create(request):
+    logger = get_logger()
+    logger.debug("/user/create: \n")
     cursor = connection.cursor()
     code = Code()
     try:
         request_data = loads(request.body)
-    except:
-        cursor.close()
-        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
-        # try:
-        #   isAnonymous = request_data['isAnonymous']
-    optional_data = []
-    try:
-        isAnonymous = request_data["isAnonymous"]
-        if isinstance(isAnonymous, int):
-            optional_data.append(("isAnonymous", isAnonymous))
-        else:
-            return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
-    except:
-        isAnonymous = 0
-
-    try:
         data = [
             ("name", request_data["name"]),
             ("username", request_data["username"]),
             ("email", request_data["email"]),
             ("about", request_data["about"])
         ]
-        data += optional_data
+    except:
+        cursor.close()
+        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
+
+    try:
+        isAnonymous = request_data["isAnonymous"]
+        if isinstance(isAnonymous, int):
+            data.append(("isAnonymous", isAnonymous))
+        else:
+            return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
+    except:
+        data.append(("isAnonymous", 0))
+
+    try:
+        logger.debug("\n\ndata: " + str(data))
         query = Query()
         query.add_insert("user", data)
-
         cursor.execute(query.get())
-
+        logger.debug("\n" + query.get() + "\n\n")
     except:
         cursor.close()
         return HttpResponse(dumps({'code': code.USER_EXISTS, "response": "user exists"}))
-    try:
-        query.clear()
-        columns = ["*"]
-        query.add_select("user", columns)
-        cursor.execute(query.get())
 
+    try:
         query.clear()
         query.select_last_insert_id()
         cursor.execute(query.get())
+        logger.debug("\n" + query.get() + "\n\n")
 
         user_id = cursor.fetchone()[0]
-        print (user_id)
 
         response = {
-            "about": request_data["about"],
-            "email": request_data["email"],
-            "id": user_id,
-            "isAnonymous": isAnonymous,
-            "name": request_data["name"],
-            "username": request_data["username"]
+            "name": data[0][1],
+            "username": data[1][1],
+            "email": data[2][1],
+            "about": data[3][1],
+            "isAnonymous": data[4][1],
+            "user": user_id
         }
-
 
     except:
         cursor.close()

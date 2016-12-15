@@ -19,10 +19,12 @@ from api_application.user import urls as user_urls
 from api_application.forum import urls as forum_urls
 from api_application.thread import urls as thread_urls
 from api_application.post import urls as post_urls
+from api_application.common.views.clear import clear
 urlpatterns = [
     url(r'^db/api/admin/', admin.site.urls),
     url(r'^db/api/user/', include(user_urls)),
     url(r'^db/api/forum/', include(forum_urls)),
     url(r'^db/api/thread/', include(thread_urls)),
     url(r'^db/api/post/', include(post_urls)),
+    url(r'^db/api/clear/',  clear, name="clear"),
 ]

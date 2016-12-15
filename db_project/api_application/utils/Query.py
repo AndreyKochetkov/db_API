@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from api_application.utils.logger import get_logger
+
 class Query:
     __sentence = ""
 
@@ -20,7 +22,6 @@ class Query:
                 values += str(data[i][1])
             else:
                 values += "\"" + str(data[i][1]) + "\""
-            print (values)
             if i != length - 1:
                 columns += ", "
                 values += ", "
@@ -33,12 +34,15 @@ class Query:
         data - list of tuples(!) of names of columns and their values
 
         """
-
+        logger = get_logger()
+        logger.debug("\n\ndata input insert: " + str(data))
         columns, values = self.parse_args(data)
+        logger.debug("\n\ndata mod insert: " + str(columns) + str(values))
 
         self.__sentence += "INSERT INTO {} ({}) VALUES ({});".format(
             table, columns, values
         )
+        logger.debug(self.__sentence)
 
     def add_select(self, table, columns):
         """Add SELECT section in query
@@ -80,6 +84,10 @@ class Query:
         if self.__sentence.endswith(';'):
             self.__sentence = self.__sentence[:-1]
         self.__sentence += " WHERE {};".format(condition)
+
+    def add_delete(self, table):
+        self.clear()
+        self.__sentence = "TRUNCATE TABLE {}".format(table)
 
     INSERT = 'INSERT {} ({}) VALUES ({});'
     DELETE = 'DELETE FROM {table} WHERE {clause};'

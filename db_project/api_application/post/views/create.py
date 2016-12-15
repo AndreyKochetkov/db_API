@@ -3,16 +3,14 @@ from json import dumps, loads
 from django.http import HttpResponse
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
-import logging
 
-from api_application.utils.Query import Query
 from api_application.utils.Code import Code
-from api_application.user.utils import get_user_by_email
-from api_application.forum.utils import get_forum_by_short_name
+from api_application.user.utils import get_id_user_by_email
+from api_application.forum.utils import get_id_forum_by_short_name
 from api_application.utils.validate import validate_date
 from api_application.thread.utils import remove_thread, get_thread_by_id
 from api_application.post.utils import get_post_by_id
-
+from api_application.utils.logger import get_logger
 """
 "isApproved": true,
 "user": "example@mail.ru",
@@ -26,12 +24,12 @@ from api_application.post.utils import get_post_by_id
 "isEdited": true
 """
 
-logger = logging.getLogger(__name__)
 
 
 @csrf_exempt
 def create(request):
-    logger.debug("/post/create:")
+    logger = get_logger()
+    logger.debug("/post/create: \n")
     cursor = connection.cursor()
     code = Code()
     try:
@@ -48,7 +46,7 @@ def create(request):
     ###########  user verification ##############
 
     try:
-        query = get_user_by_email(user)
+        query = get_id_user_by_email(user)
         logger.debug("get_user_by_email: " + query.get())
         cursor.execute(query.get())
     except:
@@ -65,7 +63,7 @@ def create(request):
     ###########  forum verification ##############
 
     try:
-        query = get_forum_by_short_name(forum)
+        query = get_id_forum_by_short_name(forum)
         logger.debug("get_forum_by_short_name: " + query.get())
         cursor.execute(query.get())
 

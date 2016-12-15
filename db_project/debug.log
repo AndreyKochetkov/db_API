@@ -14,3 +14,1265 @@ get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
 get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
 get_thread_by_id: SELECT id FROM thread WHERE id = "4";
 insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "example@mail.ru", "2014-01-01 00:00:01", "my message 1", False, True);
+/post/create:
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "example@mail.ru", "2014-01-01 00:00:01", "my message 1", False, True);
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'user28@mailru'), ('about', u'bla bla bla'), ('isAnonymous', 0)]
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "user28@mailru", "bla bla bla", 0);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'user29@mailru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "user29@mailru", "bla bla bla", 1);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'user1@mailru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "user1@mailru", "bla bla bla", 1);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'user1@mailru'), ('about', u'bla bla bla'), ('isAnonymous', 0)]
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'user2@mailru'), ('about', u'bla bla bla'), ('isAnonymous', 0)]
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "user2@mailru", "bla bla bla", 0);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+
+
+remove_thread: UPDATE thread SET isDeleted = True WHERE id = "2";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+
+
+remove_thread: UPDATE thread SET isDeleted = True WHERE id = "2";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum1", "first", False, "user1@mailru", "2014-01-01 00:00:01", "dfgb", "dfgbdfgb", 1);
+
+
+remove_thread: UPDATE thread SET isDeleted = True WHERE id = "2";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum1", "first", True, "user1@mailru", "2014-01-01 00:00:01", "dfgb", "dfgbdfgb", 1);
+
+
+remove_thread: UPDATE thread SET isDeleted = True WHERE id = "2";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "user1@mailru", "2014-01-01 00:00:01", "my message 1", False, True);
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum1", "first", True, "user1@mailru", "2014-01-01 00:00:01", "dfgb", "dfgbdfgb", 1);
+
+
+remove_thread: UPDATE thread SET isDeleted = True WHERE id = "2";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "user1@mailru", "2014-01-01 00:00:01", "my message 1", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "user1@mailru", "2014-01-01 00:00:01", "my message 1", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+get_post_by_idSELECT id FROM post WHERE id = "1";
+insert post: INSERT INTO post (parent, forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("1", "forum2", 4, False, "user1@mailru", "2014-01-01 00:00:01", "my message 2", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+get_post_by_idSELECT id FROM post WHERE id = "1";
+insert post: INSERT INTO post (parent, forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("1", "forum2", 4, False, "user1@mailru", "2014-01-01 00:00:01", "my message 2", False, True);
+/forum/details: 
+
+SELECT id FROM forum WHERE short_name = "forum1:";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1:";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1:";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum3";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+SELECT id FROM forum WHERE short_name = "forum3";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+SELECT id FROM forum WHERE short_name = "forum4";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+SELECT id FROM forum WHERE short_name = "forum5";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+SELECT id FROM forum WHERE short_name = "forum7";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+
+
+data input insert: [['name', u'forum 7'], ['short_name', u'forum7'], ['user', u'user1@mailru'], ['user_id', 1L]]
+
+
+data mod insert: name, short_name, user, user_id"forum 7", "forum7", "user1@mailru", "1"
+INSERT INTO forum (name, short_name, user, user_id) VALUES ("forum 7", "forum7", "user1@mailru", "1");
+SELECT id FROM forum WHERE short_name = "forum7";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+
+
+data input insert: [['name', u'forum 7'], ['short_name', u'forum7'], ['user', u'user1@mailru'], ['user_id', 1]]
+
+
+data mod insert: name, short_name, user, user_id"forum 7", "forum7", "user1@mailru", 1
+INSERT INTO forum (name, short_name, user, user_id) VALUES ("forum 7", "forum7", "user1@mailru", 1);
+SELECT id FROM forum WHERE short_name = "forum7";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "user1@mailru";
+
+
+data input insert: [['name', u'forum 7'], ['short_name', u'forum7'], ['user', u'user1@mailru'], ['id_user', 1]]
+
+
+data mod insert: name, short_name, user, id_user"forum 7", "forum7", "user1@mailru", 1
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("forum 7", "forum7", "user1@mailru", 1);
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("forum 7", "forum7", "user1@mailru", 1);
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum7";
+SELECT * FROM user WHERE id = "1";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "user1@mailru";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum7";
+SELECT * FROM user WHERE id = "1";
+/user/create: 
+
+
+
+data: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"John", "user1", "example@mail.ru", "hello im user1", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("John", "user1", "example@mail.ru", "hello im user1", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("John", "user1", "example@mail.ru", "hello im user1", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/user/create: 
+
+
+
+data: [('name', None), ('username', None), ('email', u'richard.nixon@example.com'), ('about', None), ('isAnonymous', True)]
+
+
+data input insert: [('name', None), ('username', None), ('email', u'richard.nixon@example.com'), ('about', None), ('isAnonymous', True)]
+
+
+data mod insert: name, username, email, about, isAnonymous"None", "None", "richard.nixon@example.com", "None", True
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("None", "None", "richard.nixon@example.com", "None", True);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("None", "None", "richard.nixon@example.com", "None", True);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "richard.nixon@example.com";
+/user/create: 
+
+
+
+data: [('name', u'Jey'), ('username', u'user2'), ('email', u'example2@mail.ru'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Jey'), ('username', u'user2'), ('email', u'example2@mail.ru'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example2@mail.ru";
+/user/create: 
+
+
+
+data: [('name', u'Josh'), ('username', u'user3'), ('email', u'example3@mail.ru'), ('about', u'hello im user3'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Josh'), ('username', u'user3'), ('email', u'example3@mail.ru'), ('about', u'hello im user3'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Josh", "user3", "example3@mail.ru", "hello im user3", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Josh", "user3", "example3@mail.ru", "hello im user3", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Josh", "user3", "example3@mail.ru", "hello im user3", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/user/create: 
+
+
+
+data: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Jim", "user4", "example4@mail.ru", "hello im user4", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jim", "user4", "example4@mail.ru", "hello im user4", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jim", "user4", "example4@mail.ru", "hello im user4", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example4@mail.ru";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+
+
+data input insert: [['name', u'Forum With Sufficiently Large Name'], ['short_name', u'forumwithsufficientlylargename'], ['user', u'example4@mail.ru'], ['id_user', 8]]
+
+
+data mod insert: name, short_name, user, id_user"Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru", 8
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru", 8);
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru", 8);
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forumwithsufficientlylargename";
+SELECT * FROM user WHERE id = "8";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+
+
+data input insert: [['name', u'Forum I'], ['short_name', u'forum1'], ['user', u'example4@mail.ru'], ['id_user', 8]]
+
+
+data mod insert: name, short_name, user, id_user"Forum I", "forum1", "example4@mail.ru", 8
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum I", "forum1", "example4@mail.ru", 8);
+SELECT id FROM forum WHERE short_name = "forum1";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1";
+SELECT * FROM user WHERE id = "None";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+
+
+data input insert: [['name', u'Forum II'], ['short_name', u'forum2'], ['user', u'example2@mail.ru'], ['id_user', 6]]
+
+
+data mod insert: name, short_name, user, id_user"Forum II", "forum2", "example2@mail.ru", 6
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum II", "forum2", "example2@mail.ru", 6);
+SELECT id FROM forum WHERE short_name = "forum2";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum2";
+SELECT * FROM user WHERE id = "None";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+
+
+data input insert: [['name', u'\u0424\u043e\u0440\u0443\u043c \u0422\u0440\u0438'], ['short_name', u'forum3'], ['user', u'example4@mail.ru'], ['id_user', 8]]
+SELECT id FROM forum WHERE short_name = "forum3";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum3";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+
+
+data input insert: [(u'forum', u'forum1'), (u'title', u'Thread With Sufficiently Large Title'), (u'isClosed', True), (u'user', u'richard.nixon@example.com'), (u'date', u'2014-01-01 00:00:01'), (u'message', u'hey hey hey hey!'), (u'slug', u'Threadwithsufficientlylargetitle'), (u'isDeleted', False)]
+
+
+data mod insert: forum, title, isClosed, user, date, message, slug, isDeleted"forum1", "Thread With Sufficiently Large Title", True, "richard.nixon@example.com", "2014-01-01 00:00:01", "hey hey hey hey!", "Threadwithsufficientlylargetitle", False
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum1", "Thread With Sufficiently Large Title", True, "richard.nixon@example.com", "2014-01-01 00:00:01", "hey hey hey hey!", "Threadwithsufficientlylargetitle", False);
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum1", "Thread With Sufficiently Large Title", True, "richard.nixon@example.com", "2014-01-01 00:00:01", "hey hey hey hey!", "Threadwithsufficientlylargetitle", False);
+
+
+remove_thread: UPDATE thread SET isDeleted = False WHERE id = "2";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 7), (u'user', u'example3@mail.ru'), (u'isEdited', False), (u'date', u'2014-08-14 15:18:25'), (u'message', u'my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0'), (u'isSpam', False), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", True, False, 7, "example3@mail.ru", False, "2014-08-14 15:18:25", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example3@mail.ru", False, "2014-08-14 15:18:25", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example3@mail.ru", False, "2014-08-14 15:18:25", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 7), (u'user', u'example2@mail.ru'), (u'isEdited', False), (u'date', u'2015-05-28 16:05:17'), (u'message', u'my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1'), (u'isSpam', True), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", True, False, 7, "example2@mail.ru", False, "2015-05-28 16:05:17", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", True, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example2@mail.ru", False, "2015-05-28 16:05:17", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", True, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example2@mail.ru", False, "2015-05-28 16:05:17", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", True, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 7), (u'user', u'example@mail.ru'), (u'isEdited', False), (u'date', u'2015-06-03 12:01:17'), (u'message', u'my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", True, False, 7, "example@mail.ru", False, "2015-06-03 12:01:17", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", False, "2015-06-03 12:01:17", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", False, "2015-06-03 12:01:17", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', False), (u'isDeleted', False), (u'thread', 7), (u'user', u'example4@mail.ru'), (u'isEdited', False), (u'date', u'2016-03-31 11:59:27'), (u'message', u'my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", False, False, 7, "example4@mail.ru", False, "2016-03-31 11:59:27", "my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", False, False, 7, "example4@mail.ru", False, "2016-03-31 11:59:27", "my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", False, False, 7, "example4@mail.ru", False, "2016-03-31 11:59:27", "my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4my message 4", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 7), (u'user', u'example@mail.ru'), (u'isEdited', True), (u'date', u'2016-09-21 08:30:46'), (u'message', u'my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5'), (u'isSpam', False), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", True, False, 7, "example@mail.ru", True, "2016-09-21 08:30:46", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", False, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", True, "2016-09-21 08:30:46", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", False, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", True, "2016-09-21 08:30:46", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum1";
+get_thread_by_id: SELECT id FROM thread WHERE id = "7";
+
+
+data input insert: [(u'forum', u'forum1'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 7), (u'user', u'example@mail.ru'), (u'isEdited', True), (u'date', u'2016-10-13 23:34:03'), (u'message', u'my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6'), (u'isSpam', False), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum1", "None", True, False, 7, "example@mail.ru", True, "2016-10-13 23:34:03", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", True, "2016-10-13 23:34:03", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum1", "None", True, False, 7, "example@mail.ru", True, "2016-10-13 23:34:03", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, False);
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+
+
+data input insert: [(u'forum', u'forum2'), (u'title', u'Thread I'), (u'isClosed', False), (u'user', u'example4@mail.ru'), (u'date', u'2013-12-31 00:01:01'), (u'message', u'hey!'), (u'slug', u'thread1'), (u'isDeleted', False)]
+
+
+data mod insert: forum, title, isClosed, user, date, message, slug, isDeleted"forum2", "Thread I", False, "example4@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum2", "Thread I", False, "example4@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False);
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forum2", "Thread I", False, "example4@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False);
+
+
+remove_thread: UPDATE thread SET isDeleted = False WHERE id = "5";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+
+
+data input insert: [(u'forum', u'forum2'), (u'parent', None), (u'isApproved', False), (u'isDeleted', False), (u'thread', 8), (u'user', u'example2@mail.ru'), (u'isEdited', False), (u'date', u'2015-11-26 16:32:33'), (u'message', u'my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0'), (u'isSpam', False), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum2", "None", False, False, 8, "example2@mail.ru", False, "2015-11-26 16:32:33", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", False, False, 8, "example2@mail.ru", False, "2015-11-26 16:32:33", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", False, False, 8, "example2@mail.ru", False, "2015-11-26 16:32:33", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+
+
+data input insert: [(u'forum', u'forum2'), (u'parent', None), (u'isApproved', False), (u'isDeleted', False), (u'thread', 8), (u'user', u'example4@mail.ru'), (u'isEdited', True), (u'date', u'2016-09-10 02:19:28'), (u'message', u'my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2'), (u'isSpam', False), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum2", "None", False, False, 8, "example4@mail.ru", True, "2016-09-10 02:19:28", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", False, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", False, False, 8, "example4@mail.ru", True, "2016-09-10 02:19:28", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", False, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", False, False, 8, "example4@mail.ru", True, "2016-09-10 02:19:28", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+
+
+data input insert: [(u'forum', u'forum2'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 8), (u'user', u'example3@mail.ru'), (u'isEdited', False), (u'date', u'2016-11-24 18:47:16'), (u'message', u'my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3'), (u'isSpam', False), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum2", "None", True, False, 8, "example3@mail.ru", False, "2016-11-24 18:47:16", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", False, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", True, False, 8, "example3@mail.ru", False, "2016-11-24 18:47:16", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", False, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", True, False, 8, "example3@mail.ru", False, "2016-11-24 18:47:16", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+
+
+data input insert: [(u'forum', u'forum2'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 8), (u'user', u'example4@mail.ru'), (u'isEdited', False), (u'date', u'2016-12-12 18:10:21'), (u'message', u'my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forum2", "None", True, False, 8, "example4@mail.ru", False, "2016-12-12 18:10:21", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", True, False, 8, "example4@mail.ru", False, "2016-12-12 18:10:21", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", "None", True, False, 8, "example4@mail.ru", False, "2016-12-12 18:10:21", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "8";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'title', u'Thread II'), (u'isClosed', False), (u'user', u'example@mail.ru'), (u'date', u'2013-12-30 00:01:01'), (u'message', u'hey hey!'), (u'slug', u'thread2'), (u'isDeleted', False)]
+
+
+data mod insert: forum, title, isClosed, user, date, message, slug, isDeleted"forumwithsufficientlylargename", "Thread II", False, "example@mail.ru", "2013-12-30 00:01:01", "hey hey!", "thread2", False
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forumwithsufficientlylargename", "Thread II", False, "example@mail.ru", "2013-12-30 00:01:01", "hey hey!", "thread2", False);
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forumwithsufficientlylargename", "Thread II", False, "example@mail.ru", "2013-12-30 00:01:01", "hey hey!", "thread2", False);
+
+
+remove_thread: UPDATE thread SET isDeleted = False WHERE id = "7";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 9), (u'user', u'example@mail.ru'), (u'isEdited', True), (u'date', u'2015-05-15 04:48:17'), (u'message', u'my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0'), (u'isSpam', True), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 9, "example@mail.ru", True, "2015-05-15 04:48:17", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", True, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "example@mail.ru", True, "2015-05-15 04:48:17", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", True, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "example@mail.ru", True, "2015-05-15 04:48:17", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", True, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', False), (u'isDeleted', False), (u'thread', 9), (u'user', u'example@mail.ru'), (u'isEdited', False), (u'date', u'2016-07-09 01:55:46'), (u'message', u'my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1'), (u'isSpam', False), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", False, False, 9, "example@mail.ru", False, "2016-07-09 01:55:46", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", False, False, 9, "example@mail.ru", False, "2016-07-09 01:55:46", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", False, False, 9, "example@mail.ru", False, "2016-07-09 01:55:46", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', False), (u'isDeleted', False), (u'thread', 9), (u'user', u'example4@mail.ru'), (u'isEdited', False), (u'date', u'2016-08-21 14:32:40'), (u'message', u'my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", False, False, 9, "example4@mail.ru", False, "2016-08-21 14:32:40", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", False, False, 9, "example4@mail.ru", False, "2016-08-21 14:32:40", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", False, False, 9, "example4@mail.ru", False, "2016-08-21 14:32:40", "my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2my message 2", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 9), (u'user', u'example3@mail.ru'), (u'isEdited', True), (u'date', u'2016-12-13 13:34:30'), (u'message', u'my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5'), (u'isSpam', True), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 9, "example3@mail.ru", True, "2016-12-13 13:34:30", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "example3@mail.ru", True, "2016-12-13 13:34:30", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "example3@mail.ru", True, "2016-12-13 13:34:30", "my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5my message 5", True, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 9), (u'user', u'richard.nixon@example.com'), (u'isEdited', True), (u'date', u'2016-12-15 15:04:32'), (u'message', u'my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 9, "richard.nixon@example.com", True, "2016-12-15 15:04:32", "my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "richard.nixon@example.com", True, "2016-12-15 15:04:32", "my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 9, "richard.nixon@example.com", True, "2016-12-15 15:04:32", "my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7my message 7", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "9";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'title', u'\u0422\u0440\u0435\u0434 \u0422\u0440\u0438'), (u'isClosed', False), (u'user', u'example@mail.ru'), (u'date', u'2013-12-29 00:01:01'), (u'message', u'hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! '), (u'slug', u'thread3'), (u'isDeleted', False)]
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/user/create: 
+
+
+
+data: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"John", "user1", "example@mail.ru", "hello im user1", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("John", "user1", "example@mail.ru", "hello im user1", False);
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example2@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "richard.nixon@example.com";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/user/create: 
+
+
+
+data: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'John'), ('username', u'user1'), ('email', u'example@mail.ru'), ('about', u'hello im user1'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"John", "user1", "example@mail.ru", "hello im user1", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("John", "user1", "example@mail.ru", "hello im user1", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("John", "user1", "example@mail.ru", "hello im user1", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/user/create: 
+
+
+
+data: [('name', None), ('username', None), ('email', u'richard.nixon@example.com'), ('about', None), ('isAnonymous', True)]
+
+
+data input insert: [('name', None), ('username', None), ('email', u'richard.nixon@example.com'), ('about', None), ('isAnonymous', True)]
+
+
+data mod insert: name, username, email, about, isAnonymous"None", "None", "richard.nixon@example.com", "None", True
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("None", "None", "richard.nixon@example.com", "None", True);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("None", "None", "richard.nixon@example.com", "None", True);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "richard.nixon@example.com";
+/user/create: 
+
+
+
+data: [('name', u'Jey'), ('username', u'user2'), ('email', u'example2@mail.ru'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Jey'), ('username', u'user2'), ('email', u'example2@mail.ru'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jey", "user2", "example2@mail.ru", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example2@mail.ru";
+/user/create: 
+
+
+
+data: [('name', u'Josh'), ('username', u'user3'), ('email', u'example3@mail.ru'), ('about', u'hello im user3'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Josh'), ('username', u'user3'), ('email', u'example3@mail.ru'), ('about', u'hello im user3'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Josh", "user3", "example3@mail.ru", "hello im user3", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Josh", "user3", "example3@mail.ru", "hello im user3", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Josh", "user3", "example3@mail.ru", "hello im user3", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/user/create: 
+
+
+
+data: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Jim", "user4", "example4@mail.ru", "hello im user4", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jim", "user4", "example4@mail.ru", "hello im user4", False);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jim", "user4", "example4@mail.ru", "hello im user4", False);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example4@mail.ru";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+
+
+data input insert: [['name', u'Forum With Sufficiently Large Name'], ['short_name', u'forumwithsufficientlylargename'], ['user', u'example@mail.ru'], ['id_user', 1]]
+
+
+data mod insert: name, short_name, user, id_user"Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example@mail.ru", 1
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example@mail.ru", 1);
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example@mail.ru", 1);
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forumwithsufficientlylargename";
+SELECT * FROM user WHERE id = "1";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+
+
+data input insert: [['name', u'Forum I'], ['short_name', u'forum1'], ['user', u'example2@mail.ru'], ['id_user', 3]]
+
+
+data mod insert: name, short_name, user, id_user"Forum I", "forum1", "example2@mail.ru", 3
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum I", "forum1", "example2@mail.ru", 3);
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum I", "forum1", "example2@mail.ru", 3);
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1";
+SELECT * FROM user WHERE id = "3";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+
+
+data input insert: [['name', u'Forum II'], ['short_name', u'forum2'], ['user', u'richard.nixon@example.com'], ['id_user', 2]]
+
+
+data mod insert: name, short_name, user, id_user"Forum II", "forum2", "richard.nixon@example.com", 2
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum II", "forum2", "richard.nixon@example.com", 2);
+INSERT INTO forum (name, short_name, user, id_user) VALUES ("Forum II", "forum2", "richard.nixon@example.com", 2);
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum2";
+SELECT * FROM user WHERE id = "2";
+/forum/create: 
+
+
+
+ get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+
+
+data input insert: [['name', u'\u0424\u043e\u0440\u0443\u043c \u0422\u0440\u0438'], ['short_name', u'forum3'], ['user', u'example3@mail.ru'], ['id_user', 4]]
+SELECT id FROM forum WHERE short_name = "forum3";
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum3";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'title', u'Thread I'), (u'isClosed', False), (u'user', u'example@mail.ru'), (u'date', u'2013-12-31 00:01:01'), (u'message', u'hey!'), (u'slug', u'thread1'), (u'isDeleted', False)]
+
+
+data mod insert: forum, title, isClosed, user, date, message, slug, isDeleted"forumwithsufficientlylargename", "Thread I", False, "example@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forumwithsufficientlylargename", "Thread I", False, "example@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False);
+INSERT INTO thread (forum, title, isClosed, user, date, message, slug, isDeleted) VALUES ("forumwithsufficientlylargename", "Thread I", False, "example@mail.ru", "2013-12-31 00:01:01", "hey!", "thread1", False);
+
+
+remove_thread: UPDATE thread SET isDeleted = False WHERE id = "1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 1), (u'user', u'example@mail.ru'), (u'isEdited', False), (u'date', u'2016-08-02 07:46:27'), (u'message', u'my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0'), (u'isSpam', False), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 1, "example@mail.ru", False, "2016-08-02 07:46:27", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example@mail.ru", False, "2016-08-02 07:46:27", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example@mail.ru", False, "2016-08-02 07:46:27", "my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0my message 0", False, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 1), (u'user', u'example3@mail.ru'), (u'isEdited', False), (u'date', u'2016-08-06 20:11:57'), (u'message', u'my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1'), (u'isSpam', False), (u'isHighlighted', False)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", False, "2016-08-06 20:11:57", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, False
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", False, "2016-08-06 20:11:57", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, False);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", False, "2016-08-06 20:11:57", "my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1my message 1", False, False);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 1), (u'user', u'example3@mail.ru'), (u'isEdited', True), (u'date', u'2016-08-19 16:36:41'), (u'message', u'my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3'), (u'isSpam', True), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", True, "2016-08-19 16:36:41", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", True, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", True, "2016-08-19 16:36:41", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", True, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "example3@mail.ru", True, "2016-08-19 16:36:41", "my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3my message 3", True, True);
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+get_post_by_idSELECT id FROM post WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forumwithsufficientlylargename";
+get_thread_by_id: SELECT id FROM thread WHERE id = "1";
+
+
+data input insert: [(u'forum', u'forumwithsufficientlylargename'), (u'parent', None), (u'isApproved', True), (u'isDeleted', False), (u'thread', 1), (u'user', u'richard.nixon@example.com'), (u'isEdited', True), (u'date', u'2016-12-03 07:36:42'), (u'message', u'my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6'), (u'isSpam', False), (u'isHighlighted', True)]
+
+
+data mod insert: forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted"forumwithsufficientlylargename", "None", True, False, 1, "richard.nixon@example.com", True, "2016-12-03 07:36:42", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, True
+INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "richard.nixon@example.com", True, "2016-12-03 07:36:42", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, True);
+insert post: INSERT INTO post (forum, parent, isApproved, isDeleted, thread, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forumwithsufficientlylargename", "None", True, False, 1, "richard.nixon@example.com", True, "2016-12-03 07:36:42", "my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6my message 6", False, True);
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/thread/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+
+
+data input insert: [(u'forum', u'forum2'), (u'title', u'\u0422\u0440\u0435\u0434 \u0422\u0440\u0438'), (u'isClosed', False), (u'user', u'example2@mail.ru'), (u'date', u'2013-12-29 00:01:01'), (u'message', u'hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! hey hey hey! '), (u'slug', u'thread3'), (u'isDeleted', False)]
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum3";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example2@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/post/create: 
+
+get_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "-1";
+/user/create: 
+
+
+
+data: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data input insert: [('name', u'Jim'), ('username', u'user4'), ('email', u'example4@mail.ru'), ('about', u'hello im user4'), ('isAnonymous', False)]
+
+
+data mod insert: name, username, email, about, isAnonymous"Jim", "user4", "example4@mail.ru", "hello im user4", False
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("Jim", "user4", "example4@mail.ru", "hello im user4", False);
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example2@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example@mail.ru";
+/forum/details: 
+
+SELECT * FROM user WHERE email = "example3@mail.ru";
