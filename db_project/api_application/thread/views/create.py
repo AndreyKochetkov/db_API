@@ -87,7 +87,8 @@ def create(request):
 
     ######################## insert without optional arguments ###################
 
-
+    request_data["date"] = date
+    request_data["isClosed"] = isClosed
     try:
         query.clear()
         query.add_insert("thread", request_data.items())

@@ -10,22 +10,13 @@ class Query:
         """clear the sentence of query"""
         self.__sentence = ""
 
-    def add_insert(self, table, data):
-        """Add INSERT section in query
-
-        table - name of table
-        data - list of tuples(!) of names of columns and their values
-
-        """
+    def parse_args(self, data):
         columns = ""
         values = ""
         length = len(data)
-        print(length)
-        print (table)
-        print(self.__sentence + "ff")
         for i in xrange(0, length):
             columns += data[i][0]
-            if isinstance(data[i][1], int ):
+            if isinstance(data[i][1], int):
                 values += str(data[i][1])
             else:
                 values += "\"" + str(data[i][1]) + "\""
@@ -33,11 +24,21 @@ class Query:
             if i != length - 1:
                 columns += ", "
                 values += ", "
+        return columns, values
+
+    def add_insert(self, table, data):
+        """Add INSERT section in query
+
+        table - name of table
+        data - list of tuples(!) of names of columns and their values
+
+        """
+
+        columns, values = self.parse_args(data)
 
         self.__sentence += "INSERT INTO {} ({}) VALUES ({});".format(
             table, columns, values
         )
-        print(self.__sentence)
 
     def add_select(self, table, columns):
         """Add SELECT section in query
@@ -53,15 +54,16 @@ class Query:
             columns_str, table
         )
 
-    def add_update(self, table, column, value):
+    def add_update(self, table, data):
         """
         :param table: таблица которую изменяем
-        :param column: столбец в который вставляем значение
-        :param value: вставляемое значение
+        :param data: список со столбцами и значениями
         :return : none
         """
+        columns, values = self.parse_args(data)
+
         self.__sentence = "UPDATE {} SET {} = {}".format(
-            table, column, value
+            table, columns, values
         )
 
     def select_last_insert_id(self):

@@ -1,0 +1,16 @@
+check log
+/post/create:
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (date, forum, message, user, thread) VALUES ("2014-01-01 00:00:01", "forum2", "my message 1", "example@mail.ru", 4);
+/post/create:
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, isEdited, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "example@mail.ru", True, "2014-01-01 00:00:01", "my message 1", False, True);
+/post/create:
+get_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru";
+get_forum_by_short_name: SELECT id FROM forum WHERE short_name = "forum2";
+get_thread_by_id: SELECT id FROM thread WHERE id = "4";
+insert post: INSERT INTO post (forum, thread, isDeleted, user, date, message, isSpam, isHighlighted) VALUES ("forum2", 4, False, "example@mail.ru", "2014-01-01 00:00:01", "my message 1", False, True);
