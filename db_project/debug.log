@@ -1982,3 +1982,115 @@ data input insert: (('user', u'user1@mailru'), ('thread', 6))
 data mod insert: user, thread"user1@mailru", 6
 INSERT INTO subscribe (user, thread) VALUES ("user1@mailru", 6);
 insert subscribe: INSERT INTO subscribe (user, thread) VALUES ("user1@mailru", 6);
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'example@mail.ru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+
+data input insert: [('name', u'vanya'), ('username', u'user111'), ('email', u'example@mail.ru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+
+data mod insert: name, username, email, about, isAnonymous"vanya", "user111", "example@mail.ru", "bla bla bla", 1
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "example@mail.ru", "bla bla bla", 1);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "example@mail.ru", "bla bla bla", 1);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/user/create: 
+
+
+
+data: [('name', u'vanya'), ('username', u'user111'), ('email', u'example3@mail.ru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+
+data input insert: [('name', u'vanya'), ('username', u'user111'), ('email', u'example3@mail.ru'), ('about', u'bla bla bla'), ('isAnonymous', 1)]
+
+
+data mod insert: name, username, email, about, isAnonymous"vanya", "user111", "example3@mail.ru", "bla bla bla", 1
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "example3@mail.ru", "bla bla bla", 1);
+
+INSERT INTO user (name, username, email, about, isAnonymous) VALUES ("vanya", "user111", "example3@mail.ru", "bla bla bla", 1);
+
+
+
+SELECT LAST_INSERT_ID();
+
+
+/user/follow: 
+
+follower get_user_by_email: SELECT * FROM user WHERE email = "example@mail.ru";
+followee get_user_by_email: SELECT * FROM user WHERE email = "example3@mail.ru";
+
+
+data input insert: (('follower', u'example@mail.ru'), ('following', u'example3@mail.ru'))
+
+
+data mod insert: follower, following"example@mail.ru", "example3@mail.ru"
+INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example3@mail.ru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example3@mail.ru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'example@mail.ru'), ('following', u'example3@mail.ru'))
+
+
+data mod insert: follower, following"example@mail.ru", "example3@mail.ru"
+INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example3@mail.ru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example3@mail.ru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'example@mail.ru'), ('following', u'example@mail.ru'))
+
+
+data mod insert: follower, following"example@mail.ru", "example@mail.ru"
+INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example@mail.ru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "example@mail.ru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'exampl3@mail.ru'), ('following', u'example@mail.ru'))
+
+
+data mod insert: follower, following"exampl3@mail.ru", "example@mail.ru"
+INSERT INTO follow (follower, following) VALUES ("exampl3@mail.ru", "example@mail.ru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("exampl3@mail.ru", "example@mail.ru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'user1@mailru'), ('following', u'example@mail.ru'))
+
+
+data mod insert: follower, following"user1@mailru", "example@mail.ru"
+INSERT INTO follow (follower, following) VALUES ("user1@mailru", "example@mail.ru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("user1@mailru", "example@mail.ru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'user1@mailru'), ('following', u'user1@mailru'))
+
+
+data mod insert: follower, following"user1@mailru", "user1@mailru"
+INSERT INTO follow (follower, following) VALUES ("user1@mailru", "user1@mailru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("user1@mailru", "user1@mailru");
+/user/follow: 
+
+
+
+data input insert: (('follower', u'example@mail.ru'), ('following', u'user1@mailru'))
+
+
+data mod insert: follower, following"example@mail.ru", "user1@mailru"
+INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "user1@mailru");
+insert follow: INSERT INTO follow (follower, following) VALUES ("example@mail.ru", "user1@mailru");
