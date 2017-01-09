@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from api_application.utils.logger import get_logger
 
+
 class Query:
     __sentence = ""
 
@@ -39,7 +40,7 @@ class Query:
         columns, values = self.parse_args(data)
         logger.debug("\n\ndata mod insert: " + str(columns) + str(values))
 
-        self.__sentence += "INSERT INTO {} ({}) VALUES ({});".format(
+        self.__sentence += "INSERT INTO {} ({}) VALUES ({})".format(
             table, columns, values
         )
         logger.debug(self.__sentence)
@@ -54,7 +55,7 @@ class Query:
         columns_str = ""
         for column in columns:
             columns_str += column
-        self.__sentence = "SELECT {} FROM {};".format(
+        self.__sentence = "SELECT {} FROM {}".format(
             columns_str, table
         )
 
@@ -73,7 +74,7 @@ class Query:
     def select_last_insert_id(self):
         """select last insert id"""
         self.clear()
-        self.__sentence = "SELECT LAST_INSERT_ID();"
+        self.__sentence = "SELECT LAST_INSERT_ID()"
 
     def add_where_condition(self, condition):
         """Add SELECT section in query
@@ -81,13 +82,15 @@ class Query:
             condition - string with the condition of WHERE part
 
         """
-        if self.__sentence.endswith(';'):
-            self.__sentence = self.__sentence[:-1]
-        self.__sentence += " WHERE {};".format(condition)
+
+        self.__sentence += " WHERE {}".format(condition)
 
     def add_delete(self, table):
         self.clear()
         self.__sentence = "TRUNCATE TABLE {}".format(table)
+
+    def add_left_join(self, table, condition):
+        self.__sentence += " LEFT JOIN {} ON {} ".format(table, condition)
 
     INSERT = 'INSERT {} ({}) VALUES ({});'
     DELETE = 'DELETE FROM {table} WHERE {clause};'

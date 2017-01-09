@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Query import Query
 from api_application.utils.Code import Code
-from api_application.user.utils import get_id_user_by_email
+from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_id_forum_by_short_name
 from api_application.utils.validate import validate_date
 from api_application.thread.utils import remove_thread

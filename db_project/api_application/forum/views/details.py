@@ -5,7 +5,7 @@ from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.user.utils import get_user_by_id
+from api_application.user.utils import get_query_user_by_id
 from api_application.forum.utils import get_forum_by_short_name
 from api_application.utils.logger import get_logger
 

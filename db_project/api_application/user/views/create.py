@@ -1,71 +1,47 @@
 # -*- coding: utf-8 -*-
 from json import dumps, loads
 from django.http import HttpResponse
-from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 
-from api_application.utils.Query import Query
 from api_application.utils.Code import Code
 from api_application.utils.logger import get_logger
+from api_application.user.handlers.create import create_user
 
 
 @csrf_exempt
 def create(request):
     logger = get_logger()
     logger.debug("/user/create: \n")
-    cursor = connection.cursor()
     code = Code()
+    # try to load needed data from request
     try:
         request_data = loads(request.body)
+        # using a list for data
         data = [
             ("name", request_data["name"]),
             ("username", request_data["username"]),
             ("email", request_data["email"]),
             ("about", request_data["about"])
         ]
+    # except if we have invalid json
     except:
-        cursor.close()
-        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
+        return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "failed loads"}))
 
+    # try to get optional parameter
     try:
         isAnonymous = request_data["isAnonymous"]
         if isinstance(isAnonymous, int):
             data.append(("isAnonymous", isAnonymous))
         else:
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
+    # except if we have not an optional parameter
     except:
         data.append(("isAnonymous", 0))
 
-    try:
-        logger.debug("\n\ndata: " + str(data))
-        query = Query()
-        query.add_insert("user", data)
-        cursor.execute(query.get())
-        logger.debug("\n" + query.get() + "\n\n")
-    except:
-        cursor.close()
-        return HttpResponse(dumps({'code': code.USER_EXISTS, "response": "user exists"}))
-
-    try:
-        query.clear()
-        query.select_last_insert_id()
-        cursor.execute(query.get())
-        logger.debug("\n" + query.get() + "\n\n")
-
-        user_id = cursor.fetchone()[0]
-
-        response = {
-            "name": data[0][1],
-            "username": data[1][1],
-            "email": data[2][1],
-            "about": data[3][1],
-            "isAnonymous": data[4][1],
-            "user": user_id
-        }
-
-    except:
-        cursor.close()
-        return HttpResponse(dumps({'code': code.UNKNOWN_ERROR, "response": "select failed"}))
-
-    cursor.close()
-    return HttpResponse(dumps({'code': code.OK, "response": response}))
+    # insert user in db
+    response = create_user(data)
+    logger.debug("response" + str(response))
+    if response is not None:
+        return HttpResponse(dumps({'code': code.OK, "response": response}))
+    else:
+        return HttpResponse(dumps({'code': code.UNKNOWN_ERROR, "response": "insert error"}))
