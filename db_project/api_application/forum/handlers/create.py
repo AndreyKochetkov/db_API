@@ -31,24 +31,8 @@ def create_forum(data):
         cursor.execute(query.get())
         logger.debug(query.get())
     except:
-        try:
-            query = get_id_forum_by_short_name(data["short_name"])
-            logger.debug(query.get())
-            cursor.execute(query.get())
-
-            existed_forum = cursor.fetchone()
-            cursor.close()
-
-            return {'code': code.OK,
-                    'response': {
-                        'id': existed_forum[0],
-                        'short_name': existed_forum[1],
-                        'name': existed_forum[2],
-                        'user': existed_forum[3]
-                    }}
-        except:
-            cursor.close()
-            return {'code': code.UNKNOWN_ERROR, "response": "short_name exist, name doesn't"}
+        cursor.close()
+        return {'code': code.UNKNOWN_ERROR, "response": "short_name or name exist"}
     try:
         query.clear()
         query.select_last_insert_id()

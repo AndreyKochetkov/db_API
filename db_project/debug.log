@@ -23924,3 +23924,140 @@ data input insert: [('name', u'forum1'), ('short_name', u'forum1'), ('user', u'e
 data mod insert: name, short_name, user"forum1", "forum1", "example@mail.ru"
 INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum1", "example@mail.ru")
 SELECT id FROM forum WHERE short_name = "forum1"
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum1'), ('short_name', u'forum1'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum1", "forum1", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum1", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "exampfle@mail.ru"
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum2'), ('short_name', u'forum2'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum2", "forum2", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum5'), ('short_name', u'forum2'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum5", "forum2", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum5", "forum2", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum2'), ('short_name', u'forum5'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum2", "forum5", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum5", "example@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum5", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum1'), ('short_name', u'forum1'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum1", "forum1", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum1", "example@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum1", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum1'), ('short_name', u'forum1'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum1", "forum1", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum1", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum2'), ('short_name', u'forum1'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum2", "forum1", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum1", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum1'), ('short_name', u'forum2'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum1", "forum2", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum1", "forum2", "example@mail.ru")
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'forum2'), ('short_name', u'forum2'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum2", "forum2", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
