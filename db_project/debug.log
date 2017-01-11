@@ -24061,3 +24061,798 @@ data input insert: [('name', u'forum2'), ('short_name', u'forum2'), ('user', u'e
 data mod insert: name, short_name, user"forum2", "forum2", "example@mail.ru"
 INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
 INSERT INTO forum (name, short_name, user) VALUES ("forum2", "forum2", "example@mail.ru")
+/user/create: 
+
+try get anon
+def create(data)
+
+
+data: {'username': u'user1', 'about': u'hello im user1', 'isAnonymous': 0, 'name': u'John', 'email': u'example@mail.ru'}
+
+
+data input insert: [('username', u'user1'), ('about', u'hello im user1'), ('isAnonymous', 0), ('name', u'John'), ('email', u'example@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user1", "hello im user1", 0, "John", "example@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", 0, "John", "example@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", 0, "John", "example@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", 0, "John", "example@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+0
+str(data)  {'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': 0, 'id': 1L}
+response{'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': 0, 'id': 1L}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user1', 'about': u'hello im user1', 'isAnonymous': False, 'name': u'John', 'email': u'example@mail.ru'}
+
+
+data input insert: [('username', u'user1'), ('about', u'hello im user1'), ('isAnonymous', False), ('name', u'John'), ('email', u'example@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user1", "hello im user1", False, "John", "example@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': False, 'id': 1L}
+response{'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': False, 'id': 1L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example@mail.ru"
+name is not None
+John
+response{'username': u'user1', 'about': u'hello im user1', 'followers': [], 'name': u'John', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 1L, 'email': u'example@mail.ru'}
+json: {"code": 0, "response": {"username": "user1", "about": "hello im user1", "followers": [], "name": "John", "subscriptions": [], "following": [], "isAnonymous": false, "id": 1, "email": "example@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+
+
+data input insert: [('isAnonymous', 1), ('email', u'richard.nixon@example.com')]
+
+
+data mod insert: isAnonymous, email1, "richard.nixon@example.com"
+INSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+  executeINSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+
+
+ after executeINSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+1
+str(data)  {'username': None, 'about': None, 'name': None, 'id': 2L, 'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+response{'username': None, 'about': None, 'name': None, 'id': 2L, 'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "richard.nixon@example.com"
+name is None
+None
+response{'username': None, 'about': None, 'followers': [], 'name': None, 'subscriptions': [], 'following': [], 'isAnonymous': True, 'id': 2L, 'email': u'richard.nixon@example.com'}
+json: {"code": 0, "response": {"username": null, "about": null, "followers": [], "name": null, "subscriptions": [], "following": [], "isAnonymous": true, "id": 2, "email": "richard.nixon@example.com"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'isAnonymous': False, 'name': u'Jey', 'email': u'example2@mail.ru'}
+
+
+data input insert: [('username', u'user2'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False), ('name', u'Jey'), ('email', u'example2@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'name': u'Jey', 'email': u'example2@mail.ru', 'isAnonymous': False, 'id': 3L}
+response{'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'name': u'Jey', 'email': u'example2@mail.ru', 'isAnonymous': False, 'id': 3L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example2@mail.ru"
+name is not None
+Jey
+response{'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'followers': [], 'name': u'Jey', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 3L, 'email': u'example2@mail.ru'}
+json: {"code": 0, "response": {"username": "user2", "about": "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", "followers": [], "name": "Jey", "subscriptions": [], "following": [], "isAnonymous": false, "id": 3, "email": "example2@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user3', 'about': u'hello im user3', 'isAnonymous': False, 'name': u'Josh', 'email': u'example3@mail.ru'}
+
+
+data input insert: [('username', u'user3'), ('about', u'hello im user3'), ('isAnonymous', False), ('name', u'Josh'), ('email', u'example3@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user3", "hello im user3", False, "Josh", "example3@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user3', 'about': u'hello im user3', 'name': u'Josh', 'email': u'example3@mail.ru', 'isAnonymous': False, 'id': 4L}
+response{'username': u'user3', 'about': u'hello im user3', 'name': u'Josh', 'email': u'example3@mail.ru', 'isAnonymous': False, 'id': 4L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example3@mail.ru"
+name is not None
+Josh
+response{'username': u'user3', 'about': u'hello im user3', 'followers': [], 'name': u'Josh', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 4L, 'email': u'example3@mail.ru'}
+json: {"code": 0, "response": {"username": "user3", "about": "hello im user3", "followers": [], "name": "Josh", "subscriptions": [], "following": [], "isAnonymous": false, "id": 4, "email": "example3@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user4', 'about': u'hello im user4', 'isAnonymous': False, 'name': u'Jim', 'email': u'example4@mail.ru'}
+
+
+data input insert: [('username', u'user4'), ('about', u'hello im user4'), ('isAnonymous', False), ('name', u'Jim'), ('email', u'example4@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user4", "hello im user4", False, "Jim", "example4@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user4', 'about': u'hello im user4', 'name': u'Jim', 'email': u'example4@mail.ru', 'isAnonymous': False, 'id': 5L}
+response{'username': u'user4', 'about': u'hello im user4', 'name': u'Jim', 'email': u'example4@mail.ru', 'isAnonymous': False, 'id': 5L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example4@mail.ru"
+name is not None
+Jim
+response{'username': u'user4', 'about': u'hello im user4', 'followers': [], 'name': u'Jim', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 5L, 'email': u'example4@mail.ru'}
+json: {"code": 0, "response": {"username": "user4", "about": "hello im user4", "followers": [], "name": "Jim", "subscriptions": [], "following": [], "isAnonymous": false, "id": 5, "email": "example4@mail.ru"}}
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru"
+
+
+data input insert: [('name', u'Forum With Sufficiently Large Name'), ('short_name', u'forumwithsufficientlylargename'), ('user', u'example4@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example4@mail.ru")
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forumwithsufficientlylargename"
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example4@mail.ru"
+
+
+data input insert: [('name', u'Forum I'), ('short_name', u'forum1'), ('user', u'example4@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum I", "forum1", "example4@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum I", "forum1", "example4@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("Forum I", "forum1", "example4@mail.ru")
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum1"
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'Forum II'), ('short_name', u'forum2'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum II", "forum2", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum II", "forum2", "example@mail.ru")
+INSERT INTO forum (name, short_name, user) VALUES ("Forum II", "forum2", "example@mail.ru")
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum2"
+/forum/create: 
+
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+
+
+data input insert: [('name', u'\u0424\u043e\u0440\u0443\u043c \u0422\u0440\u0438'), ('short_name', u'forum3'), ('user', u'example@mail.ru')]
+/forum/details: 
+
+SELECT * FROM forum WHERE short_name = "forum3"
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user1', 'about': u'hello im user1', 'isAnonymous': False, 'name': u'John', 'email': u'example@mail.ru'}
+
+
+data input insert: [('username', u'user1'), ('about', u'hello im user1'), ('isAnonymous', False), ('name', u'John'), ('email', u'example@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user1", "hello im user1", False, "John", "example@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user1", "hello im user1", False, "John", "example@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': False, 'id': 1L}
+response{'username': u'user1', 'about': u'hello im user1', 'name': u'John', 'email': u'example@mail.ru', 'isAnonymous': False, 'id': 1L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example@mail.ru"
+name is not None
+John
+response{'username': u'user1', 'about': u'hello im user1', 'followers': [], 'name': u'John', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 1L, 'email': u'example@mail.ru'}
+json: {"code": 0, "response": {"username": "user1", "about": "hello im user1", "followers": [], "name": "John", "subscriptions": [], "following": [], "isAnonymous": false, "id": 1, "email": "example@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+
+
+data input insert: [('isAnonymous', 1), ('email', u'richard.nixon@example.com')]
+
+
+data mod insert: isAnonymous, email1, "richard.nixon@example.com"
+INSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+  executeINSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+
+
+ after executeINSERT INTO user (isAnonymous, email) VALUES (1, "richard.nixon@example.com")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+1
+str(data)  {'username': None, 'about': None, 'name': None, 'id': 2L, 'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+response{'username': None, 'about': None, 'name': None, 'id': 2L, 'isAnonymous': 1, 'email': u'richard.nixon@example.com'}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "richard.nixon@example.com"
+name is None
+None
+response{'username': None, 'about': None, 'followers': [], 'name': None, 'subscriptions': [], 'following': [], 'isAnonymous': True, 'id': 2L, 'email': u'richard.nixon@example.com'}
+json: {"code": 0, "response": {"username": null, "about": null, "followers": [], "name": null, "subscriptions": [], "following": [], "isAnonymous": true, "id": 2, "email": "richard.nixon@example.com"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'isAnonymous': False, 'name': u'Jey', 'email': u'example2@mail.ru'}
+
+
+data input insert: [('username', u'user2'), ('about', u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2'), ('isAnonymous', False), ('name', u'Jey'), ('email', u'example2@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user2", "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", False, "Jey", "example2@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'name': u'Jey', 'email': u'example2@mail.ru', 'isAnonymous': False, 'id': 3L}
+response{'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'name': u'Jey', 'email': u'example2@mail.ru', 'isAnonymous': False, 'id': 3L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example2@mail.ru"
+name is not None
+Jey
+response{'username': u'user2', 'about': u'hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2', 'followers': [], 'name': u'Jey', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 3L, 'email': u'example2@mail.ru'}
+json: {"code": 0, "response": {"username": "user2", "about": "hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2hello im user2", "followers": [], "name": "Jey", "subscriptions": [], "following": [], "isAnonymous": false, "id": 3, "email": "example2@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user3', 'about': u'hello im user3', 'isAnonymous': False, 'name': u'Josh', 'email': u'example3@mail.ru'}
+
+
+data input insert: [('username', u'user3'), ('about', u'hello im user3'), ('isAnonymous', False), ('name', u'Josh'), ('email', u'example3@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user3", "hello im user3", False, "Josh", "example3@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user3", "hello im user3", False, "Josh", "example3@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user3', 'about': u'hello im user3', 'name': u'Josh', 'email': u'example3@mail.ru', 'isAnonymous': False, 'id': 4L}
+response{'username': u'user3', 'about': u'hello im user3', 'name': u'Josh', 'email': u'example3@mail.ru', 'isAnonymous': False, 'id': 4L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example3@mail.ru"
+name is not None
+Josh
+response{'username': u'user3', 'about': u'hello im user3', 'followers': [], 'name': u'Josh', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 4L, 'email': u'example3@mail.ru'}
+json: {"code": 0, "response": {"username": "user3", "about": "hello im user3", "followers": [], "name": "Josh", "subscriptions": [], "following": [], "isAnonymous": false, "id": 4, "email": "example3@mail.ru"}}
+/user/create: 
+
+try get anon
+is bool
+def create(data)
+
+
+data: {'username': u'user4', 'about': u'hello im user4', 'isAnonymous': False, 'name': u'Jim', 'email': u'example4@mail.ru'}
+
+
+data input insert: [('username', u'user4'), ('about', u'hello im user4'), ('isAnonymous', False), ('name', u'Jim'), ('email', u'example4@mail.ru')]
+
+
+data mod insert: username, about, isAnonymous, name, email"user4", "hello im user4", False, "Jim", "example4@mail.ru"
+INSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+  executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+
+
+ after executeINSERT INTO user (username, about, isAnonymous, name, email) VALUES ("user4", "hello im user4", False, "Jim", "example4@mail.ru")
+
+
+
+SELECT LAST_INSERT_ID()
+
+
+False
+str(data)  {'username': u'user4', 'about': u'hello im user4', 'name': u'Jim', 'email': u'example4@mail.ru', 'isAnonymous': False, 'id': 5L}
+response{'username': u'user4', 'about': u'hello im user4', 'name': u'Jim', 'email': u'example4@mail.ru', 'isAnonymous': False, 'id': 5L}
+/forum/details: 
+
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example4@mail.ru"
+name is not None
+Jim
+response{'username': u'user4', 'about': u'hello im user4', 'followers': [], 'name': u'Jim', 'subscriptions': [], 'following': [], 'isAnonymous': False, 'id': 5L, 'email': u'example4@mail.ru'}
+json: {"code": 0, "response": {"username": "user4", "about": "hello im user4", "followers": [], "name": "Jim", "subscriptions": [], "following": [], "isAnonymous": false, "id": 5, "email": "example4@mail.ru"}}
+/forum/create: 
+
+
+
+ name in request: Forum With Sufficiently Large Name
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru"
+insert forum data: [('name', u'Forum With Sufficiently Large Name'), ('short_name', u'forumwithsufficientlylargename'), ('user', u'example3@mail.ru')]
+
+
+data input insert: [('name', u'Forum With Sufficiently Large Name'), ('short_name', u'forumwithsufficientlylargename'), ('user', u'example3@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example3@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example3@mail.ru")
+insert forum query: INSERT INTO forum (name, short_name, user) VALUES ("Forum With Sufficiently Large Name", "forumwithsufficientlylargename", "example3@mail.ru")
+/forum/details: 
+
+
+
+
+ ! related: user
+ handler forum details: 
+
+SELECT * FROM forum WHERE short_name = "forumwithsufficientlylargename"
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example3@mail.ru"
+name is not None
+Josh
+/forum/create: 
+
+
+
+ name in request: Forum I
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru"
+insert forum data: [('name', u'Forum I'), ('short_name', u'forum1'), ('user', u'example3@mail.ru')]
+
+
+data input insert: [('name', u'Forum I'), ('short_name', u'forum1'), ('user', u'example3@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum I", "forum1", "example3@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum I", "forum1", "example3@mail.ru")
+insert forum query: INSERT INTO forum (name, short_name, user) VALUES ("Forum I", "forum1", "example3@mail.ru")
+/forum/details: 
+
+
+
+
+ ! related: user
+ handler forum details: 
+
+SELECT * FROM forum WHERE short_name = "forum1"
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example3@mail.ru"
+name is not None
+Josh
+/forum/create: 
+
+
+
+ name in request: Forum II
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example3@mail.ru"
+insert forum data: [('name', u'Forum II'), ('short_name', u'forum2'), ('user', u'example3@mail.ru')]
+
+
+data input insert: [('name', u'Forum II'), ('short_name', u'forum2'), ('user', u'example3@mail.ru')]
+
+
+data mod insert: name, short_name, user"Forum II", "forum2", "example3@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("Forum II", "forum2", "example3@mail.ru")
+insert forum query: INSERT INTO forum (name, short_name, user) VALUES ("Forum II", "forum2", "example3@mail.ru")
+/forum/details: 
+
+
+
+
+ ! related: user
+ handler forum details: 
+
+SELECT * FROM forum WHERE short_name = "forum2"
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example3@mail.ru"
+name is not None
+Josh
+/forum/create: 
+
+
+
+ name in request: Форум Три
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "richard.nixon@example.com"
+insert forum data: [('name', u'\u0424\u043e\u0440\u0443\u043c \u0422\u0440\u0438'), ('short_name', u'forum3'), ('user', u'richard.nixon@example.com')]
+
+
+data input insert: [('name', u'\u0424\u043e\u0440\u0443\u043c \u0422\u0440\u0438'), ('short_name', u'forum3'), ('user', u'richard.nixon@example.com')]
+/forum/details: 
+
+
+
+
+ ! related: user
+ handler forum details: 
+
+SELECT * FROM forum WHERE short_name = "forum3"
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/thread/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/post/create: 
+
+/forum/create: 
+
+
+
+ name in request: forum3
+ handler create: 
+
+
+
+ get_id_user_by_email: SELECT id FROM user WHERE email = "example@mail.ru"
+insert forum data: [('name', u'forum3'), ('short_name', u'forum3'), ('user', u'example@mail.ru')]
+
+
+data input insert: [('name', u'forum3'), ('short_name', u'forum3'), ('user', u'example@mail.ru')]
+
+
+data mod insert: name, short_name, user"forum3", "forum3", "example@mail.ru"
+INSERT INTO forum (name, short_name, user) VALUES ("forum3", "forum3", "example@mail.ru")
+insert forum query: INSERT INTO forum (name, short_name, user) VALUES ("forum3", "forum3", "example@mail.ru")
+/forum/details: 
+
+
+
+
+ ! related: user
+ handler forum details: 
+
+SELECT * FROM forum WHERE short_name = "forum3"
+/forum/details: 
+
+SELECT u.*, group_concat(distinct f.following) as following,group_concat(distinct f1.follower) as followers,group_concat(distinct s.thread) as subscriptions FROM user as u LEFT JOIN follow as f ON u.email = f.follower  LEFT JOIN follow as f1 ON u.email = f1.following  LEFT JOIN subscribe as s ON u.email= s.user  WHERE u.email = "example@mail.ru"
+name is not None
+John

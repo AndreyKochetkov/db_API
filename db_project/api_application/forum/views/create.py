@@ -20,6 +20,7 @@ def create(request):
             "short_name": request_data["short_name"],
             "user": request_data["user"]
         }
+        logger.debug("\n\n name in request: " + data["name"])
     except:
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 

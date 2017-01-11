@@ -7,7 +7,7 @@ def get_id_forum_by_short_name(short_name):
     query.add_where_condition("short_name = \"{}\"".format(short_name))
     return query
 
-def get_forum_by_short_name(short_name):
+def get_query_forum_by_short_name(short_name):
     query = Query()
     query.add_select("forum", ["*"])
     query.add_where_condition("short_name = \"{}\"".format(short_name))
