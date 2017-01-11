@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+from django.db import connection
+
+from api_application.user.utils import get_query_id_user_by_email
+from api_application.forum.utils import get_id_forum_by_short_name
+from api_application.utils.logger import get_logger
+from api_application.utils.Code import Code
+
+
+def create_forum(data):
+    logger = get_logger()
+    logger.debug(" handler create: \n")
+    cursor = connection.cursor()
+    code = Code()
+
+    try:
+        query = get_query_id_user_by_email(data["user"])
+        logger.debug("\n\n get_id_user_by_email: " + query.get())
+        cursor.execute(query.get())
+    except:
+        cursor.close()
+        return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
+
+    if cursor.fetchone() is None:
+        cursor.close()
+        return {'code': code.UNKNOWN_ERROR, "response": "user doesn't exists"}
+
+    try:
+        query.clear()
+        query.add_insert("forum", data.items())
+        cursor.execute(query.get())
+        logger.debug(query.get())
+    except:
+        try:
+            query = get_id_forum_by_short_name(data["short_name"])
+            logger.debug(query.get())
+            cursor.execute(query.get())
+
+            existed_forum = cursor.fetchone()
+            cursor.close()
+
+            return {'code': code.OK,
+                    'response': {
+                        'id': existed_forum[0],
+                        'short_name': existed_forum[1],
+                        'name': existed_forum[2],
+                        'user': existed_forum[3]
+                    }}
+        except:
+            cursor.close()
+            return {'code': code.UNKNOWN_ERROR, "response": "short_name exist, name doesn't"}
+    try:
+        query.clear()
+        query.select_last_insert_id()
+        cursor.execute(query.get())
+
+        forum_id = cursor.fetchone()[0]
+    except:
+        cursor.close()
+        return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
+
+    data["id"] = forum_id;
+
+    cursor.close()
+    return {'code': code.OK, "response": data}

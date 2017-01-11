@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 from django.db import connection
 
 from api_application.utils.Query import Query
-from api_application.utils.Code import Code
 from api_application.utils.logger import get_logger
 
 
@@ -10,15 +8,15 @@ def create_user(data):
     logger = get_logger()
     logger.debug("def create(data)")
     cursor = connection.cursor()
-    code = Code()
 
     # insert user in db
     try:
         logger.debug("\n\ndata: " + str(data))
         query = Query()
-        query.add_insert("user", data)
+        query.add_insert("user", data.items())
+        logger.debug("\n  execute" + query.get() + "\n\n")
         cursor.execute(query.get())
-        logger.debug("\n" + query.get() + "\n\n")
+        logger.debug("\n after execute" + query.get() + "\n\n")
     # if insert failed, that means the user with this name is existed
     except:
         cursor.close()
@@ -32,15 +30,23 @@ def create_user(data):
         logger.debug("\n" + query.get() + "\n\n")
 
         user_id = cursor.fetchone()[0]
+        logger.debug(data["isAnonymous"])
+        if data["isAnonymous"] == 1:
+            name = None
+            about = None
+            username = None
+        else:
+            name = data["name"]
+            username = data["username"]
+            about = data["about"]
 
-        response = {
-            "name": data[0][1],
-            "username": data[1][1],
-            "email": data[2][1],
-            "about": data[3][1],
-            "isAnonymous": bool(data[4][1]),
-            "id": user_id
-        }
+        response = data
+
+        response["name"] = name
+        response["username"] = username
+        response["about"] = about
+        response["id"] = user_id
+        logger.debug("str(data)  " + str(response))
 
     # unknown error
     except:

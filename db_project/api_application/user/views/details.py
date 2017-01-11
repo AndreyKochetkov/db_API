@@ -24,7 +24,9 @@ def details(request):
     response = get_detail_user(email)
     logger.debug("response" + str(response))
     if response is not None:
-        return HttpResponse(dumps({'code': code.OK, "response": response}))
+        response = str(dumps({'code': code.OK, "response": response}))
+        logger.debug("json: " + response)
+        return HttpResponse(response)
     else:
         return HttpResponse(dumps({'code': code.NOT_FOUND, "response": "user doesnt exist"}))
 

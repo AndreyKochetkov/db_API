@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from json import dumps, loads
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -17,26 +16,33 @@ def create(request):
     try:
         request_data = loads(request.body)
         # using a list for data
-        data = [
-            ("name", request_data["name"]),
-            ("username", request_data["username"]),
-            ("email", request_data["email"]),
-            ("about", request_data["about"])
-        ]
+        data = {
+            "name": request_data["name"],
+            "username": request_data["username"],
+            "email": request_data["email"],
+            "about": request_data["about"]
+        }
     # except if we have invalid json
     except:
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "failed loads"}))
 
     # try to get optional parameter
     try:
+        logger.debug("try get anon")
         isAnonymous = request_data["isAnonymous"]
-        if isinstance(isAnonymous, int):
-            data.append(("isAnonymous", isAnonymous))
+        if isinstance(isAnonymous, bool):
+            logger.debug("is bool")
+            data["isAnonymous"] = isAnonymous
+            if isAnonymous is True:
+                data = {
+                    "email": request_data["email"],
+                    "isAnonymous": 1
+                }
         else:
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
     # except if we have not an optional parameter
     except:
-        data.append(("isAnonymous", 0))
+        data["isAnonymous"] = 0
 
     # insert user in db
     response = create_user(data)
