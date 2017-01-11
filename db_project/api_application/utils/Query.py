@@ -14,18 +14,25 @@ class Query:
         self.__sentence = ""
 
     def parse_args(self, data):
+        l = get_logger()
         columns = ""
         values = ""
         length = len(data)
+        l.debug(type(length))
+        l.debug("lenght = " + str(length))
+        l.debug(data[0][1])
         for i in xrange(0, length):
             columns += data[i][0]
             if isinstance(data[i][1], int):
                 values += str(data[i][1])
             else:
-                values += "\"" + str(data[i][1]) + "\""
+                values += "\"" + data[i][1] + "\""
             if i != length - 1:
                 columns += ", "
                 values += ", "
+
+        l.debug(columns)
+        l.debug(values)
         return columns, values
 
     def add_insert(self, table, data):
@@ -38,12 +45,14 @@ class Query:
         logger = get_logger()
         logger.debug("\n\ndata input insert: " + str(data))
         columns, values = self.parse_args(data)
-        logger.debug("\n\ndata mod insert: " + str(columns) + str(values))
-
-        self.__sentence += "INSERT INTO {} ({}) VALUES ({})".format(
+        logger.debug("\n\ndata mod insert: " + columns + values)
+        logger.debug(type(columns))
+        logger.debug(type(values))
+        logger.debug("self sentence before: " + str(self.__sentence))
+        self.__sentence = u"INSERT INTO {} ({}) VALUES ({})".format(
             table, columns, values
         )
-        logger.debug(self.__sentence)
+        logger.debug(type(self.__sentence))
 
     def add_select(self, table, columns):
         """Add SELECT section in query
