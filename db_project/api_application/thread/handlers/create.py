@@ -5,7 +5,7 @@ from api_application.utils.Code import Code
 from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
 from api_application.utils.validate import validate_date
-from api_application.thread.utils import remove_thread
+from api_application.thread.utils import get_query_for_remove_thread
 from api_application.utils.logger import get_logger
 
 
@@ -97,7 +97,7 @@ def create_thread(data):
     try:
         if isinstance(data["is_deleted"], bool):
             try:
-                query = remove_thread(forum_id, data["is_deleted"])
+                query = get_query_for_remove_thread(forum_id, data["is_deleted"])
                 logger.debug("\n\nremove_thread: " + query.get())
                 cursor.execute(query.get())
 

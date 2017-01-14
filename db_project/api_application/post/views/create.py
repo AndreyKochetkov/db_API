@@ -8,7 +8,7 @@ from api_application.utils.Code import Code
 from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
 from api_application.utils.validate import validate_date
-from api_application.thread.utils import remove_thread, get_thread_by_id
+from api_application.thread.utils import get_query_for_remove_thread, get_query_id_thread_by_id
 from api_application.post.utils import get_post_by_id
 from api_application.utils.logger import get_logger
 """
@@ -80,7 +80,7 @@ def create(request):
     ###########  thread verification ##############
 
     try:
-        query = get_thread_by_id(thread_id)
+        query = get_query_id_thread_by_id(thread_id)
         logger.debug("get_thread_by_id: " + query.get())
         cursor.execute(query.get())
 

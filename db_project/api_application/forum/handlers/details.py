@@ -30,7 +30,8 @@ def get_detail_forum(short_name, related):
     response = {
         "id": forum[0],
         "short_name": forum[1],
-        "name": forum[2]
+        "name": forum[2],
+        "user": forum[3]
     }
     if related:
         if related != 'user':
