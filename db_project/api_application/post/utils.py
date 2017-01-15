@@ -1,9 +1,16 @@
 from api_application.utils.Query import Query
 
 
-def get_query_post_by_id(post_id):
+def get_query_id_post_by_id(post_id):
     query = Query()
     query.add_select("post", ["id"])
+    query.add_where_condition("id = \"{}\"".format(post_id))
+    return query
+
+
+def get_query_thread_of_post_by_id(post_id):
+    query = Query()
+    query.add_select("post", ["thread"])
     query.add_where_condition("id = \"{}\"".format(post_id))
     return query
 
@@ -86,5 +93,14 @@ def get_query_list_posts_by_thread(data):
 
     if "limit" in data:
         query.add_limit(data["limit"])
+
+    return query
+
+
+def get_query_remove_post(post):
+    query = Query()
+
+    query.add_update("post", " isDeleted = 1 ")
+    query.add_where_condition(" id = {}".format(post))
 
     return query

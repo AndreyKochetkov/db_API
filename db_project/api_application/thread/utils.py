@@ -16,6 +16,20 @@ def get_query_id_thread_by_id(thread_id):
     return query
 
 
+def get_query_decrement_posts(thread_id):
+    query = Query()
+    query.add_update("thread", "posts = posts - 1")
+    query.add_where_condition("id = {}".format(thread_id))
+    return query
+
+
+def get_query_increment_posts(thread_id):
+    query = Query()
+    query.add_update("thread", "posts = posts + 1")
+    query.add_where_condition("id = {}".format(thread_id))
+    return query
+
+
 def get_query_detail_thread_by_id(id_thread, has_forum):
     query = Query()
 

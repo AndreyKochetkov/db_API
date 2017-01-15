@@ -5,22 +5,10 @@ from api_application.utils.Code import Code
 from api_application.utils.Query import Query
 from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
-from api_application.thread.utils import get_query_id_thread_by_id
-from api_application.post.utils import get_query_post_by_id
+from api_application.thread.utils import get_query_id_thread_by_id, get_query_increment_posts
+from api_application.post.utils import get_query_id_post_by_id
 from api_application.utils.logger import get_logger
 
-"""
-"isApproved": true,
-"user": "example@mail.ru",
-"date": "2014-01-01 00:00:01",
-"message": "my message 1",
-"isSpam": false,
-"isHighlighted": true,
-"thread": 4,
-"forum": "forum2",
-"isDeleted": false,
-"isEdited": true
-"""
 
 
 def create_post(data):
@@ -80,7 +68,7 @@ def create_post(data):
     if data.get("parent") is not None:
         try:
 
-            query = get_query_post_by_id(data["parent"])
+            query = get_query_id_post_by_id(data["parent"])
             cursor.execute(query.get())
             logger.debug("get_post_by_id" + query.get())
             if not cursor.rowcount:
@@ -118,12 +106,7 @@ def create_post(data):
 
 
     try:
-        query.clear()
-        print "update post:" + query.get()
-        query.add_update("thread", "posts = posts + 1")
-        print query.get()
-        query.add_where_condition("id = {}".format(data["thread"]))
-        print query.get()
+        query = get_query_increment_posts(data["thread"])
         cursor.execute(query.get())
     except:
         cursor.close()

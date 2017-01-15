@@ -48,7 +48,9 @@ def get_detail_thread(id_thread, related):
         "dislikes": thread[7],
         "points": thread[8],
         "isClosed": bool(thread[9]),
-        "isDeleted": bool(thread[10])
+        "isDeleted": bool(thread[10]),
+        "forum": thread[11],
+        "user": thread[12]
     }
     if "user" in related:
         response["user"] = get_detail_user(thread[12])
