@@ -113,3 +113,11 @@ def get_query_restore_post(post):
     query.add_where_condition(" id = {}".format(post))
 
     return query
+
+
+def get_query_update_post(post, message):
+    query = Query()
+    query.add_update("post", " message = \"{}\" ".format(message))
+    query.add_where_condition(" id = {}".format(post))
+
+    return query

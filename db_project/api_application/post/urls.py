@@ -4,6 +4,7 @@ from views.details import details
 from views.list import list
 from views.remove import remove
 from views.restore import restore
+from views.update import update
 
 urlpatterns = [
     url(r'^create/', create, name="create"),
@@ -11,4 +12,5 @@ urlpatterns = [
     url(r'^list/', list, name="list"),
     url(r'^remove/', remove, name="remove"),
     url(r'^restore/', restore, name="restore"),
+    url(r'^update/', update, name="update"),
 ]
