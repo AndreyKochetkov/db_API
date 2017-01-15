@@ -2,6 +2,7 @@
 from django.db import connection
 
 from api_application.utils.Code import Code
+from api_application.utils.Query import Query
 from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
 from api_application.thread.utils import get_query_id_thread_by_id
@@ -42,7 +43,6 @@ def create_post(data):
         cursor.close()
         return {'code': code.NOT_FOUND,
                 'response': 'user not found'}
-
 
     ###########  forum verification ##############
 
@@ -91,8 +91,7 @@ def create_post(data):
         except:
             cursor.close()
             return {'code': code.UNKNOWN_ERROR,
-                                       'response': 'post select failed'}
-
+                    'response': 'post select failed'}
 
     ######################## insert ###################
 
@@ -112,23 +111,38 @@ def create_post(data):
         query.clear()
         query.select_last_insert_id()
         cursor.execute(query.get())
+        post_id = cursor.fetchone()[0]
     except:
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
+
+    try:
+        query.clear()
+        print "update post:" + query.get()
+        query.add_update("thread", "posts = posts + 1")
+        print query.get()
+        query.add_where_condition("id = {}".format(data["thread"]))
+        print query.get()
+        cursor.execute(query.get())
+    except:
+        cursor.close()
+        return {'code': code.UNKNOWN_ERROR, "response": "update posts  failed"}
+
     ##################### response #####################
 
     response = {
-        "isApproved": data.get("isApproved", 0),
+        "id": post_id,
+        "isApproved": bool(data.get("isApproved", 0)),
         "user": data["user"],
         "date": data["date"],
         "message": data["message"],
-        "isSpam": data.get("isSpam", 0),
-        "isHighlighted": data.get("isHighlighted", 0),
+        "isSpam": bool(data.get("isSpam", 0)),
+        "isHighlighted": bool(data.get("isHighlighted", 0)),
         "thread": data["thread"],
         "forum": data["forum"],
-        "isDeleted": data.get("isDeleted", 0),
-        "isEdited": data.get("isEdited", 0),
+        "isDeleted": bool(data.get("isDeleted", 0)),
+        "isEdited": bool(data.get("isEdited", 0)),
         "parent": data.get("parent", None)
     }
 

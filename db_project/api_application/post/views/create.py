@@ -19,7 +19,7 @@ def create(request):
         request_data = loads(request.body)
 
         data = {
-            "date": request_data["date"],
+            "date": str(request_data["date"]),
             "thread": request_data["thread"],
             "message": request_data["message"],
             "user": request_data["user"],
@@ -49,10 +49,8 @@ def create(request):
 
     parent_id = request_data.get("parent")
     if parent_id is not None:
-        if not isinstance(parent_id, int):
-            return HttpResponse(dumps({'code': code.NOT_CORRECT,
-                                       'response': 'optional parent should be int'}))
-        data["parent"] = parent_id
+        if isinstance(parent_id, int):
+            data["parent"] = parent_id
 
     response = create_post(data)
-    return HttpResponse(dumps({'code': code.OK, "response": response}))
+    return HttpResponse(dumps(response))

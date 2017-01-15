@@ -18,9 +18,6 @@ class Query:
         columns = ""
         values = ""
         length = len(data)
-        l.debug(type(length))
-        l.debug("lenght = " + str(length))
-        l.debug(data[0][1])
         for i in xrange(0, length):
             columns += data[i][0]
             if isinstance(data[i][1], int):
@@ -74,10 +71,8 @@ class Query:
         :param data: список со столбцами и значениями
         :return : none
         """
-        columns, values = self.parse_args(data)
-
-        self.__sentence = "UPDATE {} SET {} = {}".format(
-            table, columns, values
+        self.__sentence = "UPDATE {} SET {}".format(
+            table, data
         )
 
     def select_last_insert_id(self):
