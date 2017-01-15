@@ -3,7 +3,7 @@ from django.db import connection
 
 from api_application.utils.logger import get_logger
 from api_application.utils.Code import Code
-from api_application.post.utils import get_query_remove_post, get_query_thread_of_post_by_id
+from api_application.post.utils import get_query_remove_post_for_id, get_query_thread_of_post_by_id
 from api_application.thread.utils import get_query_decrement_posts
 
 
@@ -14,7 +14,7 @@ def remove_post(data):
     code = Code()
     post = data["post"]
     try:
-        query = get_query_remove_post(post)
+        query = get_query_remove_post_for_id(post)
         logger.debug("\n\n get_query_remove_post: " + query.get())
         cursor.execute(query.get())
     except:

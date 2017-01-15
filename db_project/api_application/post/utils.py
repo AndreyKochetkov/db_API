@@ -1,4 +1,5 @@
 from api_application.utils.Query import Query
+from api_application.utils.logger import get_logger
 
 
 def get_query_id_post_by_id(post_id):
@@ -97,7 +98,7 @@ def get_query_list_posts_by_thread(data):
     return query
 
 
-def get_query_remove_post(post):
+def get_query_remove_post_for_id(post):
     query = Query()
 
     query.add_update("post", " isDeleted = 1 ")
@@ -106,11 +107,29 @@ def get_query_remove_post(post):
     return query
 
 
-def get_query_restore_post(post):
+def get_query_remove_post_for_thread(thread):
+    query = Query()
+
+    query.add_update("post", " isDeleted = 1 ")
+    query.add_where_condition(" thread = {}".format(thread))
+
+    return query
+
+
+def get_query_restore_post_for_id(post):
     query = Query()
 
     query.add_update("post", " isDeleted = 0 ")
     query.add_where_condition(" id = {}".format(post))
+
+    return query
+
+
+def get_query_restore_post_for_thread(thread):
+    query = Query()
+
+    query.add_update("post", " isDeleted = 0 ")
+    query.add_where_condition(" thread = {}".format(thread))
 
     return query
 
@@ -120,4 +139,23 @@ def get_query_update_post(post, message):
     query.add_update("post", " message = \"{}\" ".format(message))
     query.add_where_condition(" id = {}".format(post))
 
+    return query
+
+
+def get_query_vote_post(post, vote):
+    logger = get_logger()
+    if vote == 1:
+        column = "likes"
+        difference = " + 1 "
+    elif vote == -1:
+        column = "dislikes"
+        difference = " - 1 "
+    else:
+        return None
+    logger.debug(str(post) + str(vote) + column + difference)
+    query = Query()
+    query.add_update("post", " {} = {} + 1, points = points {}".format(column, column, difference))
+    logger.debug(query.get())
+    query.add_where_condition(" id = {}".format(post))
+    logger.debug(query.get())
     return query

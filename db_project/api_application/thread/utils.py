@@ -69,3 +69,41 @@ def get_query_list_threads(data, has_forum):
         query.add_limit(data["limit"])
 
     return query
+
+
+def get_query_close_thread(thread):
+    query = Query()
+
+    query.add_update("thread", " isClosed = 1 ")
+    query.add_where_condition(" id = {}".format(thread))
+
+    return query
+
+
+def get_query_open_thread(thread):
+    query = Query()
+
+    query.add_update("thread", " isClosed = 0 ")
+    query.add_where_condition(" id = {}".format(thread))
+
+    return query
+
+
+def get_query_remove_thread(thread):
+    query = Query()
+
+    query.add_update("thread", " isDeleted = 1 , posts = 0")
+    query.add_where_condition(" id = {}".format(thread))
+
+    return query
+
+
+def get_query_restore_thread(thread):
+    query = Query()
+
+    query.add_update("thread as t", " isDeleted = 0 , posts = ("
+                                    "select count(p.id) from post as p where p.thread = t.id)")
+    query.add_where_condition(" id = {}".format(thread))
+
+    return query
+
