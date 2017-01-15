@@ -104,3 +104,12 @@ def get_query_remove_post(post):
     query.add_where_condition(" id = {}".format(post))
 
     return query
+
+
+def get_query_restore_post(post):
+    query = Query()
+
+    query.add_update("post", " isDeleted = 0 ")
+    query.add_where_condition(" id = {}".format(post))
+
+    return query
