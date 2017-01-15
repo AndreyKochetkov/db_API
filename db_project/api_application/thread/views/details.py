@@ -27,9 +27,11 @@ def details(request):
                                    'response': 'id isn\'t int'}))
     related = request.GET.getlist('related')
     if related:
-        logger.debug("\n\n\n ! related: ")
-        logger.debug(related)
+        for value in related:
+            if value != "forum":
+                if value != "user":
+                    return HttpResponse(dumps({'code': code.NOT_CORRECT,
+                                               'response': 'wrong related:' + str(related)}))
 
     response = get_detail_thread(id_thread, related)
     return HttpResponse(dumps(response))
-

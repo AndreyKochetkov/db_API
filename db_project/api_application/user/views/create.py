@@ -50,4 +50,4 @@ def create(request):
     if response is not None:
         return HttpResponse(dumps({'code': code.OK, "response": response}))
     else:
-        return HttpResponse(dumps({'code': code.UNKNOWN_ERROR, "response": "insert error"}))
+        return HttpResponse(dumps({'code': code.USER_EXISTS, "response": "insert error"}))
