@@ -81,13 +81,10 @@ class Query:
         self.__sentence = "SELECT LAST_INSERT_ID()"
 
     def add_where_condition(self, condition):
-        """Add SELECT section in query
-
-            condition - string with the condition of WHERE part
-
-        """
-
         self.__sentence += " WHERE {}".format(condition)
+
+    def add_more_where_condition(self, condition):
+        self.__sentence += " and {}".format(condition)
 
     def add_delete(self, table):
         self.clear()
@@ -95,6 +92,15 @@ class Query:
 
     def add_left_join(self, table, condition):
         self.__sentence += " LEFT JOIN {} ON {} ".format(table, condition)
+
+    def add_group_by(self, column):
+        self.__sentence += " group by {}".format(column)
+
+    def add_order_by(self, column, type):
+        self.__sentence += " order by {} {}".format(column, type)
+
+    def add_limit(self, limit):
+        self.__sentence += " limit {}".format(limit)
 
     INSERT = 'INSERT {} ({}) VALUES ({});'
     DELETE = 'DELETE FROM {table} WHERE {clause};'

@@ -20,7 +20,12 @@ def get_detail_user(email):
         cursor.close()
         return None
 
-    user = cursor.fetchone()
+    response = validate_user(cursor.fetchone())
+
+    return response
+
+
+def validate_user(user):
     if user[0] is None:
         return None
     try:
@@ -32,15 +37,10 @@ def get_detail_user(email):
     except:
         followers = []
     try:
-        subscriptions = user[7].split(',')
+        subscriptions = user[8].split(',')
     except:
         subscriptions = []
 
-    if user[2] is None:
-        logger.debug("name is None")
-    else:
-        logger.debug("name is not None")
-    logger.debug(user[2])
     response = {
         "id": user[0],
         "email": user[1],
