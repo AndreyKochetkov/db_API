@@ -33,7 +33,7 @@ def get_query_detail_post_by_id(id_post, has_forum, has_thread):
     return query
 
 
-def get_query_list_posts(data, has_forum, has_thread):
+def get_query_list_posts_by_forum(data, has_forum, has_thread):
     query = Query()
 
     columns = "p.id, p.message, p.date, p.isApproved, p.isHighlighted, p.isEdited, p.isSpam,   " \
@@ -53,7 +53,31 @@ def get_query_list_posts(data, has_forum, has_thread):
     if has_thread:
         query.add_left_join("thread as t", "p.thread = t.id")
 
-    query.add_where_condition("p.forum = \"{}\"".format(data["forum"]))
+    if data.get("forum"):
+        query.add_where_condition("p.forum = \"{}\"".format(data["forum"]))
+    else:
+        query.add_where_condition("p.thread = \"{}\"".format(data["thread"]))
+
+    if "since" in data:
+        query.add_more_where_condition("p.date > \"{}\"".format(data["since"]))
+
+    query.add_order_by("p.date", data["order"])
+
+    if "limit" in data:
+        query.add_limit(data["limit"])
+
+    return query
+
+
+def get_query_list_posts_by_thread(data):
+    query = Query()
+
+    columns = "p.id, p.message, p.date, p.isApproved, p.isHighlighted, p.isEdited, p.isSpam," \
+              "p.isDeleted, p.forum, p.thread, p.user, p.dislikes, p.likes, p.points, p.parent"
+
+    query.add_select("post as p", columns)
+
+    query.add_where_condition("p.thread = \"{}\"".format(data["thread"]))
 
     if "since" in data:
         query.add_more_where_condition("p.date > \"{}\"".format(data["since"]))

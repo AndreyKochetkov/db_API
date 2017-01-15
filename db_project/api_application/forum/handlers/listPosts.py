@@ -4,7 +4,7 @@ from api_application.utils.Code import Code
 from api_application.utils.logger import get_logger
 from api_application.utils.validate import validate_date
 from api_application.user.handlers.details import get_detail_user
-from api_application.post.utils import get_query_list_posts
+from api_application.post.utils import get_query_list_posts_by_forum
 
 
 def get_list_of_posts(data, related):
@@ -25,7 +25,7 @@ def get_list_of_posts(data, related):
             has_thread = True
         else:
             has_thread = False
-        query = get_query_list_posts(data, has_forum, has_thread)
+        query = get_query_list_posts_by_forum(data, has_forum, has_thread)
         logger.debug("list posts: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
