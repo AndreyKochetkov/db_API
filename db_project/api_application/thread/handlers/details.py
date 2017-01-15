@@ -7,7 +7,7 @@ from api_application.utils.logger import get_logger
 from api_application.user.handlers.details import get_detail_user
 
 
-def get_detail_thread(id_thread, related):
+def get_detail_thread(id_thread, related=None):
     if related is None:
         related = []
     logger = get_logger()

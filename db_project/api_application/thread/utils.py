@@ -107,3 +107,17 @@ def get_query_restore_thread(thread):
 
     return query
 
+
+def get_query_vote_thread(thread, vote):
+    if vote == 1:
+        column = "likes"
+        difference = " + 1 "
+    elif vote == -1:
+        column = "dislikes"
+        difference = " - 1 "
+    else:
+        return None
+    query = Query()
+    query.add_update("thread", " {} = {} + 1, points = points {}".format(column, column, difference))
+    query.add_where_condition(" id = {}".format(thread))
+    return query
