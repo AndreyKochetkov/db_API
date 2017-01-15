@@ -121,3 +121,11 @@ def get_query_vote_thread(thread, vote):
     query.add_update("thread", " {} = {} + 1, points = points {}".format(column, column, difference))
     query.add_where_condition(" id = {}".format(thread))
     return query
+
+
+def get_query_update_thread(thread, message, slug):
+    query = Query()
+    query.add_update("thread", " message = \"{}\", slug = \"{}\" ".format(message, slug))
+    query.add_where_condition(" id = {}".format(thread))
+
+    return query
