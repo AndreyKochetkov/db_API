@@ -11,17 +11,17 @@ from api_application.forum.handlers.details import get_detail_forum
 @csrf_exempt
 def details(request):
     logger = get_logger()
-    logger.debug("/forum/details: \n")
     code = Code()
     if request.method != 'GET':
+        logger.debug("error create thread")
         return HttpResponse(dumps({'code': code.NOT_VALID,
                                    'response': 'request method should be GET'}))
     short_name = request.GET.get('forum')
     if not short_name:
+        logger.debug("error create thread")
         return HttpResponse(dumps({'code': code.NOT_VALID,
                                    'response': 'forum name not found in request'}))
     related = request.GET.get('related')
-    logger.debug("\n\n\n ! related: " + related)
 
     response = get_detail_forum(short_name, related)
     return HttpResponse(dumps(response))

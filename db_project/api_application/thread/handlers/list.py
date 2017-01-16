@@ -8,7 +8,6 @@ from api_application.thread.utils import get_query_list_threads
 
 def get_list(data):
     logger = get_logger()
-    logger.debug("def thread get_list(data)")
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -18,14 +17,15 @@ def get_list(data):
             query = get_query_list_threads(data, False)
         else:
             query = get_query_list_threads(data, False)
-        logger.debug("list threads: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
+
             cursor.close()
             return {'code': code.OK,
                     'response': []}
     except:
         cursor.close()
+        logger.debug("error list thread")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select threads'}
     response = []
@@ -47,6 +47,5 @@ def get_list(data):
             "forum": thread[11],
             "user": thread[12]
         })
-    logger.debug("response: " + str(response))
     return {'code': code.OK,
             'response': response}

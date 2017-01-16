@@ -11,7 +11,6 @@ from api_application.forum.handlers.create import create_forum
 @csrf_exempt
 def create(request):
     logger = get_logger()
-    logger.debug("/forum/create: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -20,8 +19,8 @@ def create(request):
             "short_name": request_data["short_name"],
             "user": request_data["user"]
         }
-        logger.debug("\n\n name in request: " + data["name"])
     except:
+        logger.debug("error create forum v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     response = create_forum(data)

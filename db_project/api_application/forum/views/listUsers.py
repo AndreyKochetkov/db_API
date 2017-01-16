@@ -11,16 +11,17 @@ from api_application.forum.handlers.listUsers import get_list_of_users
 @csrf_exempt
 def listUsers(request):
     logger = get_logger()
-    logger.debug("/forum/listUsers: \n")
     code = Code()
     try:
         data = {
             "forum": str(request.GET.get("forum"))
         }
     except:
+        logger.debug("error list users forum v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["forum"]:
+        logger.debug("error list users forum v")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect forum format'}))
 
@@ -38,7 +39,6 @@ def listUsers(request):
         data["order"] = str(order)
     else:
         data["order"] = "desc"
-    print data
 
     response = get_list_of_users(data)
     return HttpResponse(dumps(response))

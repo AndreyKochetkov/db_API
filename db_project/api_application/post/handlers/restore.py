@@ -9,15 +9,14 @@ from api_application.thread.utils import get_query_increment_posts
 
 def restore_post(data):
     logger = get_logger()
-    logger.debug(" restore post: \n")
     cursor = connection.cursor()
     code = Code()
     post = data["post"]
     try:
         query = get_query_restore_post_for_id(post)
-        logger.debug("\n\n get_query_restore_post: " + query.get())
         cursor.execute(query.get())
     except:
+        logger.debug("error restore post")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update post delete failed"}
 
@@ -26,6 +25,7 @@ def restore_post(data):
         cursor.execute(query.get())
         thread = cursor.fetchone()[0]
     except:
+        logger.debug("error restore post")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
@@ -33,6 +33,7 @@ def restore_post(data):
         query = get_query_increment_posts(thread)
         cursor.execute(query.get())
     except:
+        logger.debug("error restore post")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update thread failed"}
 

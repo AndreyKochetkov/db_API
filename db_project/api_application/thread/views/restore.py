@@ -11,7 +11,6 @@ from api_application.thread.handlers.restore import restore_thread
 @csrf_exempt
 def restore(request):
     logger = get_logger()
-    logger.debug("/thread/restore: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -19,10 +18,12 @@ def restore(request):
             "thread": request_data["thread"]
         }
     except:
+        logger.debug("error restore thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["thread"] = int(data["thread"])
     except:
+        logger.debug("error restore thread")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     response = restore_thread(data)

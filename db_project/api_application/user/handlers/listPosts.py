@@ -9,7 +9,6 @@ from api_application.post.utils import get_query_list_posts_by_user
 def get_list_of_posts(data):
 
     logger = get_logger()
-    logger.debug("def get_list_of_posts(data)")
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -17,13 +16,13 @@ def get_list_of_posts(data):
     try:
 
         query = get_query_list_posts_by_user(data)
-        logger.debug("list posts: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
             return {'code': code.OK,
                     'response': []}
     except:
+        logger.debug("error list posts user")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select posts'}
@@ -31,8 +30,6 @@ def get_list_of_posts(data):
     # return {'code': code.OK,
     #       'response': response}
     for post in cursor.fetchall():
-        logger.debug(type(post))
-        logger.debug(str(post))
 
         response.append({
             "id": post[0],
@@ -51,6 +48,5 @@ def get_list_of_posts(data):
             "points": post[13],
             "parent": post[14]
         })
-    logger.debug("response: " + str(response))
     return {'code': code.OK,
             'response': response}

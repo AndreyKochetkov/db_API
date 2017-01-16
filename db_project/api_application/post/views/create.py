@@ -12,7 +12,6 @@ from api_application.post.handlers.create import create_post
 @csrf_exempt
 def create(request):
     logger = get_logger()
-    logger.debug("/post/create: \n")
     code = Code()
     try:
 
@@ -30,9 +29,11 @@ def create(request):
 
     data["date"] = validate_date(data["date"])
     if not data["date"]:
+        logger.debug("error create post")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect date format'}))
     if not data["message"]:
+        logger.debug("error create post")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect message format'}))
 
@@ -43,6 +44,7 @@ def create(request):
         if optional_arg_value is not None:
             # print optional_arg_name, optional_arg_value
             if not isinstance(optional_arg_value, bool):
+                logger.debug("error create post")
                 return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                            'response': 'optional flag should be bool'}))
             data[optional_arg_name] = optional_arg_value

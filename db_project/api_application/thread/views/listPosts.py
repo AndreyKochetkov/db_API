@@ -11,17 +11,18 @@ from api_application.thread.handlers.listPosts import get_list_of_posts
 @csrf_exempt
 def listPosts(request):
     logger = get_logger()
-    logger.debug("/thread/listPosts: \n")
     code = Code()
     try:
         data = {
             "thread": str(request.GET.get("thread"))
         }
     except:
+        logger.debug("error list posts thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
     try:
         data["thread"] = int(data["thread"])
     except:
+        logger.debug("error list posts thread")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     ##################### optional arguments   #####################
@@ -35,6 +36,7 @@ def listPosts(request):
         try:
             data["limit"] = int(limit)
         except:
+            logger.debug("error list posts thread")
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "limit isnt int"}))
 
     order = request.GET.get("order")
@@ -46,11 +48,8 @@ def listPosts(request):
     sort = request.GET.get("sort")
     if sort is not None:
         data["sort"] = str(sort)
-        logger.debug("сортировка: " + data["sort"])
     else:
         data["sort"] = "flat"
-
-    logger.debug(str(data))
 
     response = get_list_of_posts(data)
     return HttpResponse(dumps(response))

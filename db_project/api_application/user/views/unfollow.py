@@ -11,7 +11,6 @@ from api_application.user.handlers.unfollow import unfollow_user
 @csrf_exempt
 def unfollow(request):
     logger = get_logger()
-    logger.debug("/user/unfollow: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -19,6 +18,7 @@ def unfollow(request):
         follower = request_data["follower"]
         followee = request_data["followee"]
     except:
+        logger.debug("error unfollow user v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     response = unfollow_user(follower, followee)

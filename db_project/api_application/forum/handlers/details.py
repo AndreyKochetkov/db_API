@@ -9,20 +9,20 @@ from api_application.user.handlers.details import get_detail_user
 
 def get_detail_forum(short_name, related):
     logger = get_logger()
-    logger.debug(" handler forum details: \n")
     cursor = connection.cursor()
     code = Code()
 
     try:
         query = get_query_forum_by_short_name(short_name)
-        logger.debug(query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
+            logger.debug("error detail forum")
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'forum not found'}
     except:
         cursor.close()
+        logger.debug("error detail forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select forum'}
 
@@ -36,6 +36,7 @@ def get_detail_forum(short_name, related):
     if related:
         if related != 'user':
             cursor.close()
+            logger.debug("error detail forum")
             return {'code': code.NOT_CORRECT,
                     'response': 'incorrect related parameter: {}'.format(related)}
 

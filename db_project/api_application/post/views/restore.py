@@ -11,7 +11,6 @@ from api_application.post.handlers.restore import restore_post
 @csrf_exempt
 def restore(request):
     logger = get_logger()
-    logger.debug("/post/remove: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -19,10 +18,12 @@ def restore(request):
             "post": request_data["post"]
         }
     except:
+        logger.debug("error restore post")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["post"] = int(data["post"])
     except:
+        logger.debug("error restore post")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "post isnt int"}))
 
     response = restore_post(data)

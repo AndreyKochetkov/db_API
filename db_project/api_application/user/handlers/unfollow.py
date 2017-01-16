@@ -9,7 +9,6 @@ from api_application.user.handlers.details import get_detail_user
 
 def unfollow_user(follower, followee):
     logger = get_logger()
-    logger.debug("/user/unfollow: \n")
     cursor = connection.cursor()
     code = Code()
 
@@ -17,10 +16,10 @@ def unfollow_user(follower, followee):
         query = Query()
         query.add_delete("follow")
         query.add_where_condition(" follower = \"{}\" and following = \"{}\" ".format(follower, followee))
-        logger.debug("delete follow: " + query.get())
         cursor.execute(query.get())
 
     except:
+        logger.debug("error unfollow user")
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "delete failed, user  not found"}
 

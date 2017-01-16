@@ -8,18 +8,17 @@ from api_application.user.handlers.details import validate_user
 
 def get_list_of_users(data):
     logger = get_logger()
-    logger.debug("def get_list_of_users(data)")
     cursor = connection.cursor()
     code = Code()
     try:
         query = get_query_users_by_followers(data, True)
-        logger.debug(query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
             return {'code': code.OK,
                     'response': []}
     except:
+        logger.debug("error list followers user")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select users'}

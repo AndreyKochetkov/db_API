@@ -11,7 +11,6 @@ from api_application.thread.handlers.create import create_thread
 @csrf_exempt
 def create(request):
     logger = get_logger()
-    logger.debug("/thread/create: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -26,6 +25,7 @@ def create(request):
             "date": request_data["date"]
         }
     except:
+        logger.debug("error create thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
 

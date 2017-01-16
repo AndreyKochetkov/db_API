@@ -11,7 +11,6 @@ def get_detail_thread(id_thread, related=None):
     if related is None:
         related = []
     logger = get_logger()
-    logger.debug(" handler thread details: \n")
     cursor = connection.cursor()
     code = Code()
 
@@ -21,21 +20,20 @@ def get_detail_thread(id_thread, related=None):
         else:
             has_forum = False
         query = get_query_detail_thread_by_id(id_thread, has_forum)
-        logger.debug("get thread: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
+            logger.debug("error det thread")
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'thread not found'}
     except:
         cursor.close()
+        logger.debug("error det thread")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select thread'}
 
     thread = cursor.fetchone()
 
-    logger.debug(str(thread))
-    logger.debug(type(thread))
 
     response = {
         "id": thread[0],

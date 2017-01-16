@@ -12,7 +12,6 @@ def get_list_of_threads(data, related):
     if related is None:
         related = []
     logger = get_logger()
-    logger.debug("def get_list_of_users(data)")
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -23,7 +22,6 @@ def get_list_of_threads(data, related):
         else:
             has_forum = False
         query = get_query_list_threads(data, has_forum)
-        logger.debug("list threads: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
@@ -31,6 +29,7 @@ def get_list_of_threads(data, related):
                     'response': []}
     except:
         cursor.close()
+        logger.debug("error list threads forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select threads'}
     response = []

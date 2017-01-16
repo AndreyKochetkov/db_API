@@ -11,16 +11,17 @@ from api_application.forum.handlers.listThreads import get_list_of_threads
 @csrf_exempt
 def listThreads(request):
     logger = get_logger()
-    logger.debug("/forum/listThreads: \n")
     code = Code()
     try:
         data = {
             "forum": str(request.GET.get("forum"))
         }
     except:
+        logger.debug("error list thread forum v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["forum"]:
+        logger.debug("error list thread forum v")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect forum format'}))
 
@@ -40,11 +41,6 @@ def listThreads(request):
         data["order"] = "desc"
 
     related = request.GET.getlist('related')
-    if related:
-        logger.debug("\n\n\n ! related: ")
-        logger.debug(related)
-
-    print data
 
     response = get_list_of_threads(data, related)
     return HttpResponse(dumps(response))

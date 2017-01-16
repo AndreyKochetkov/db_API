@@ -9,19 +9,18 @@ from api_application.post.handlers.details import get_detail_post
 
 def vote_post(data):
     logger = get_logger()
-    logger.debug(" update post: \n")
-    logger.debug(str(data))
     cursor = connection.cursor()
     code = Code()
     post = data["post"]
     try:
         query = get_query_vote_post(post, data["vote"])
         if query is None:
+            logger.debug("error vote post")
             cursor.close()
             return {'code': code.NOT_CORRECT, "response": "vote must be 1 or -1"}
-        logger.debug("\n\n get_query_vote_post: " + query.get())
         cursor.execute(query.get())
     except:
+        logger.debug("error vote post")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "vote post delete failed"}
 

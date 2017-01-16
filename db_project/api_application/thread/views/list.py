@@ -11,7 +11,6 @@ from api_application.thread.handlers.list import get_list
 @csrf_exempt
 def list(request):
     logger = get_logger()
-    logger.debug("/thread/list: \n")
     code = Code()
     data = None
     if request.GET.get("forum"):
@@ -23,8 +22,10 @@ def list(request):
             "user": request.GET.get("user")
         }
     if data is None:
+        logger.debug("error list thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "data in None "}))
     if len(data) > 1:
+        logger.debug("error list thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "forum or user only"}))
 
 
@@ -42,8 +43,6 @@ def list(request):
         data["order"] = str(order)
     else:
         data["order"] = "desc"
-
-    logger.debug(str(data))
 
     response = get_list(data)
     return HttpResponse(dumps(response))

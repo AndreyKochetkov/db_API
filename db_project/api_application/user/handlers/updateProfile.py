@@ -9,16 +9,14 @@ from api_application.user.handlers.details import get_detail_user
 
 def update_user(data):
     logger = get_logger()
-    logger.debug(" update_user: \n")
-    logger.debug(str(data))
     cursor = connection.cursor()
     code = Code()
     user = data["user"]
     try:
         query = get_query_update_user(user, data["about"], data["name"])
-        logger.debug("\n\n get_query_update_user: " + query.get())
         cursor.execute(query.get())
     except:
+        logger.debug("error update user")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update user delete failed"}
 

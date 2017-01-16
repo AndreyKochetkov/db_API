@@ -10,16 +10,17 @@ from api_application.user.handlers.listPosts import get_list_of_posts
 @csrf_exempt
 def listPosts(request):
     logger = get_logger()
-    logger.debug("/user/listPosts: \n")
     code = Code()
     try:
         data = {
             "user": str(request.GET.get("user"))
         }
     except:
+        logger.debug("error posts user")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["user"]:
+        logger.debug("error posts user")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect suer format'}))
 
@@ -38,7 +39,6 @@ def listPosts(request):
     else:
         data["order"] = "desc"
 
-    logger.debug(str(data))
 
     response = get_list_of_posts(data)
     return HttpResponse(dumps(response))

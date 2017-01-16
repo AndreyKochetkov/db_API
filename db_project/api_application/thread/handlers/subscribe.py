@@ -8,17 +8,16 @@ from api_application.utils.logger import get_logger
 
 def subscribe_user(thread, user):
     logger = get_logger()
-    logger.debug("/thread/subscribe: \n")
     cursor = connection.cursor()
     code = Code()
 
     try:
         query = Query()
         query.add_insert("subscribe", (("user", user), ("thread", thread)))
-        logger.debug("insert subscribe: " + query.get())
         cursor.execute(query.get())
 
     except:
+        logger.debug("error subscribe thread")
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 

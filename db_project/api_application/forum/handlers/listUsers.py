@@ -8,12 +8,10 @@ from api_application.user.handlers.details import validate_user
 
 def get_list_of_users(data):
     logger = get_logger()
-    logger.debug("def get_list_of_users(data)")
     cursor = connection.cursor()
     code = Code()
     try:
         query = get_query_users_by_forum(data)
-        print query.get()
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
@@ -21,6 +19,7 @@ def get_list_of_users(data):
                     'response': []}
     except:
         cursor.close()
+        logger.debug("error list users forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select users'}
     response = []

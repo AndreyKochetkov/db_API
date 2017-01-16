@@ -11,16 +11,17 @@ from api_application.user.handlers.listFollowing import get_list_of_users
 @csrf_exempt
 def listFollowing(request):
     logger = get_logger()
-    logger.debug("/user/list followers: \n")
     code = Code()
     try:
         data = {
             "user": str(request.GET.get("user"))
         }
     except:
+        logger.debug("error following user")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["user"]:
+        logger.debug("error following user")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect forum format'}))
 
@@ -38,7 +39,6 @@ def listFollowing(request):
         data["order"] = str(order)
     else:
         data["order"] = "desc"
-    print data
 
     response = get_list_of_users(data)
     return HttpResponse(dumps(response))

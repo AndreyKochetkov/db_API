@@ -6,11 +6,9 @@ from api_application.utils.logger import get_logger
 
 def get_detail_user(email):
     logger = get_logger()
-    logger.debug("/forum/details: \n")
     cursor = connection.cursor()
     try:
         query = get_query_detail_user_by_email(email)
-        logger.debug(query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
@@ -38,14 +36,9 @@ def validate_user(user):
         followers = []
     try:
         subscriptions = user[8].split(',')
-        logger = get_logger()
-        logger.debug(type(subscriptions))
-        logger.debug(str(subscriptions))
         new_subs = []
         for sub in subscriptions:
             new_subs.append(int(sub))
-        logger.debug(type(new_subs))
-        logger.debug(str(new_subs))
     except:
         new_subs = []
 

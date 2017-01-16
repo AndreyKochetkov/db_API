@@ -10,7 +10,6 @@ from api_application.user.handlers.create import create_user
 @csrf_exempt
 def create(request):
     logger = get_logger()
-    logger.debug("/user/create: \n")
     code = Code()
     # try to load needed data from request
     try:
@@ -24,14 +23,13 @@ def create(request):
         }
     # except if we have invalid json
     except:
+        logger.debug("error create user")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "failed loads"}))
 
     # try to get optional parameter
     try:
-        logger.debug("try get anon")
         isAnonymous = request_data["isAnonymous"]
         if isinstance(isAnonymous, bool):
-            logger.debug("is bool")
             data["isAnonymous"] = isAnonymous
             if isAnonymous is True:
                 data = {
@@ -39,6 +37,7 @@ def create(request):
                     "isAnonymous": 1
                 }
         else:
+            logger.debug("error create user")
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
     # except if we have not an optional parameter
     except:
@@ -46,8 +45,8 @@ def create(request):
 
     # insert user in db
     response = create_user(data)
-    logger.debug("response" + str(response))
     if response is not None:
         return HttpResponse(dumps({'code': code.OK, "response": response}))
     else:
+        logger.debug("error create user")
         return HttpResponse(dumps({'code': code.USER_EXISTS, "response": "insert error"}))

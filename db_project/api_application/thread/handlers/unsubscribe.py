@@ -8,7 +8,6 @@ from api_application.utils.logger import get_logger
 
 def unsubscribe_user(thread, user):
     logger = get_logger()
-    logger.debug("/thread/unsubscribe: \n")
     cursor = connection.cursor()
     code = Code()
 
@@ -16,10 +15,10 @@ def unsubscribe_user(thread, user):
         query = Query()
         query.add_delete("subscribe")
         query.add_where_condition(" user = \"{}\" and thread = {} ".format(user, thread))
-        logger.debug("insert unsubscribe: " + query.get())
         cursor.execute(query.get())
 
     except:
+        logger.debug("error unsubscribe thread")
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 

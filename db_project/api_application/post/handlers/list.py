@@ -9,7 +9,6 @@ from api_application.post.utils import get_query_list_posts_by_thread, get_query
 
 def get_list(data):
     logger = get_logger()
-    logger.debug("def get_list(data)")
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -19,23 +18,21 @@ def get_list(data):
             query = get_query_list_posts_by_forum(data, False, False)
         else:
             query = get_query_list_posts_by_forum(data, False, False)
-        logger.debug("list posts: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
+            logger.debug("error list post")
             cursor.close()
             return {'code': code.OK,
                     'response': []}
     except:
         cursor.close()
+        logger.debug("error list post")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select posts'}
     response = []
     # return {'code': code.OK,
     #       'response': response}
     for post in cursor.fetchall():
-        logger.debug(type(post))
-        logger.debug(str(post))
-
         response.append({
             "id": post[0],
             "message": post[1],
@@ -53,6 +50,5 @@ def get_list(data):
             "points": post[13],
             "parent": post[14]
         })
-    logger.debug("response: " + str(response))
     return {'code': code.OK,
             'response': response}

@@ -9,23 +9,22 @@ from api_application.post.utils import get_query_remove_post_for_thread
 
 def remove_thread(data):
     logger = get_logger()
-    logger.debug(" handler open: \n")
     cursor = connection.cursor()
     code = Code()
     thread = data["thread"]
     try:
         query = get_query_remove_thread(thread)
-        logger.debug("\n\n  get_query_remove_thread(thread): " + query.get())
         cursor.execute(query.get())
     except:
         cursor.close()
+        logger.debug("error remove thread")
         return {'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}
     try:
         query = get_query_remove_post_for_thread(thread)
-        logger.debug("\n\n  get_query_remove_post_for_thread: " + query.get())
         cursor.execute(query.get())
     except:
         cursor.close()
+        logger.debug("error remove thread")
         return {'code': code.UNKNOWN_ERROR, "response": "remove post failed"}
 
     response = {

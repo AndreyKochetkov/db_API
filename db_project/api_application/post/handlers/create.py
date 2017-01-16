@@ -12,7 +12,6 @@ from api_application.utils.logger import get_logger
 
 def create_post(data):
     logger = get_logger()
-    logger.debug("/post/create: \n")
     cursor = connection.cursor()
     code = Code()
 
@@ -20,13 +19,14 @@ def create_post(data):
 
     try:
         query = get_query_id_user_by_email(data["user"])
-        logger.debug("get_user_by_email: " + query.get())
         cursor.execute(query.get())
     except:
+        logger.debug("error create post")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
     if not cursor.rowcount:
+        logger.debug("error create post")
         cursor.close()
         return {'code': code.NOT_FOUND,
                 'response': 'user not found'}
@@ -35,15 +35,16 @@ def create_post(data):
 
     try:
         query = get_query_id_forum_by_short_name(data["forum"])
-        logger.debug("get_forum_by_short_name: " + query.get())
         cursor.execute(query.get())
 
     except:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
     if not cursor.rowcount:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.NOT_FOUND,
                 'response': 'forum not found'}
 
@@ -51,15 +52,16 @@ def create_post(data):
 
     try:
         query = get_query_id_thread_by_id(data["thread"])
-        logger.debug("get_thread_by_id: " + query.get())
         cursor.execute(query.get())
 
     except:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
     if not cursor.rowcount:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.NOT_FOUND,
                 'response': 'thread not found'}
 
@@ -69,15 +71,16 @@ def create_post(data):
 
             query = get_query_parent_thread_and_forum(data["parent"])
             cursor.execute(query.get())
-            logger.debug("get_post_by_id" + query.get())
             if not cursor.rowcount:
                 cursor.close()
+                logger.debug("error create post")
                 return {'code': code.NOT_FOUND,
                         'response': 'post not found'}
 
             res = cursor.fetchone()
             if res[0] != data["forum"]:
                 cursor.close()
+                logger.debug("error create post")
                 return {'code': code.NOT_FOUND,
                         'response': 'parent is not in this forum'}
             if res[1] != data["thread"]:
@@ -96,11 +99,11 @@ def create_post(data):
     try:
         query.clear()
         query.add_insert("post", data.items())
-        logger.debug("insert post: " + query.get())
         cursor.execute(query.get())
 
     except:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.UNKNOWN_ERROR, "response": "insert failed"}
 
     ######################## last post ###################
@@ -111,6 +114,7 @@ def create_post(data):
         post_id = cursor.fetchone()[0]
     except:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
     try:
@@ -118,6 +122,7 @@ def create_post(data):
         cursor.execute(query.get())
     except:
         cursor.close()
+        logger.debug("error create post")
         return {'code': code.UNKNOWN_ERROR, "response": "update posts  failed"}
 
     ##################### response #####################

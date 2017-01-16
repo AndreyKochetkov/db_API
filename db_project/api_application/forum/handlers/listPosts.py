@@ -11,7 +11,6 @@ def get_list_of_posts(data, related):
     if related is None:
         related = []
     logger = get_logger()
-    logger.debug("def get_list_of_posts(data)")
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -26,7 +25,6 @@ def get_list_of_posts(data, related):
         else:
             has_thread = False
         query = get_query_list_posts_by_forum(data, has_forum, has_thread)
-        logger.debug("list posts: " + query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:
             cursor.close()
@@ -34,14 +32,11 @@ def get_list_of_posts(data, related):
                     'response': []}
     except:
         cursor.close()
+        logger.debug("error listposts forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select posts'}
     response = []
-    # return {'code': code.OK,
-    #       'response': response}
     for post in cursor.fetchall():
-        logger.debug(type(post))
-        logger.debug(str(post))
         if has_forum:
             number_of_columns_of_forum = 0
             forum = {
@@ -96,6 +91,5 @@ def get_list_of_posts(data, related):
             "points": post[13],
             "parent": post[14]
         })
-    logger.debug("response: " + str(response))
     return {'code': code.OK,
             'response': response}

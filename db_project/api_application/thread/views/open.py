@@ -11,7 +11,6 @@ from api_application.thread.handlers.open import open_thread
 @csrf_exempt
 def open(request):
     logger = get_logger()
-    logger.debug("/thread/open: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -19,10 +18,12 @@ def open(request):
             "thread": request_data["thread"]
         }
     except:
+        logger.debug("error open thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["thread"] = int(data["thread"])
     except:
+        logger.debug("error open thread")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     response = open_thread(data)

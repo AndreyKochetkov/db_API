@@ -11,7 +11,6 @@ from api_application.post.handlers.vote import vote_post
 @csrf_exempt
 def vote(request):
     logger = get_logger()
-    logger.debug("/post/vote: \n")
     code = Code()
     try:
         request_data = loads(request.body)
@@ -20,14 +19,17 @@ def vote(request):
             "vote": request_data["vote"]
         }
     except:
+        logger.debug("error vote post")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["post"] = int(data["post"])
     except:
+        logger.debug("error vote post")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "post isnt int"}))
     try:
         data["vote"] = int(data["vote"])
     except:
+        logger.debug("error vote post")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "vote isnt int"}))
 
     response = vote_post(data)

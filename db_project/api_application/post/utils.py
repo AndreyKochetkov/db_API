@@ -1,5 +1,4 @@
 from api_application.utils.Query import Query
-from api_application.utils.logger import get_logger
 
 
 def get_query_id_post_by_id(post_id):
@@ -170,7 +169,6 @@ def get_query_update_post(post, message):
 
 
 def get_query_vote_post(post, vote):
-    logger = get_logger()
     if vote == 1:
         column = "likes"
         difference = " + 1 "
@@ -179,12 +177,9 @@ def get_query_vote_post(post, vote):
         difference = " - 1 "
     else:
         return None
-    logger.debug(str(post) + str(vote) + column + difference)
     query = Query()
     query.add_update("post", " {} = {} + 1, points = points {}".format(column, column, difference))
-    logger.debug(query.get())
     query.add_where_condition(" id = {}".format(post))
-    logger.debug(query.get())
     return query
 
 

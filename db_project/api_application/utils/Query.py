@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from api_application.utils.logger import get_logger
 
 
 class Query:
@@ -14,7 +13,6 @@ class Query:
         self.__sentence = ""
 
     def parse_args(self, data):
-        l = get_logger()
         columns = ""
         values = ""
         length = len(data)
@@ -28,8 +26,6 @@ class Query:
                 columns += ", "
                 values += ", "
 
-        l.debug(columns)
-        l.debug(values)
         return columns, values
 
     def add_insert(self, table, data):
@@ -39,17 +35,10 @@ class Query:
         data - list of tuples(!) of names of columns and their values
 
         """
-        logger = get_logger()
-        logger.debug("\n\ndata input insert: " + str(data))
         columns, values = self.parse_args(data)
-        logger.debug("\n\ndata mod insert: " + columns + values)
-        logger.debug(type(columns))
-        logger.debug(type(values))
-        logger.debug("self sentence before: " + str(self.__sentence))
         self.__sentence = u"INSERT INTO {} ({}) VALUES ({})".format(
             table, columns, values
         )
-        logger.debug(type(self.__sentence))
 
     def add_select(self, table, columns):
         """Add SELECT section in query
@@ -78,9 +67,6 @@ class Query:
     def add_delete(self, table):
         self.__sentence = "delete from {} ".format(table)
 
-
-
-
     def select_last_insert_id(self):
         self.clear()
         self.__sentence = "SELECT LAST_INSERT_ID()"
@@ -90,7 +76,6 @@ class Query:
 
     def add_more_where_condition(self, condition):
         self.__sentence += " and {}".format(condition)
-
 
     def add_left_join(self, table, condition):
         self.__sentence += " LEFT JOIN {} ON {} ".format(table, condition)
@@ -103,15 +88,3 @@ class Query:
 
     def add_limit(self, limit):
         self.__sentence += " limit {}".format(limit)
-
-    INSERT = 'INSERT {} ({}) VALUES ({});'
-    DELETE = 'DELETE FROM {table} WHERE {clause};'
-    SELECT = 'SELECT {columns} FROM {table} '
-    JOIN = 'JOIN {table} ON {clause} '
-    LEFT_JOIN = 'LEFT JOIN {table} ON {clause} '
-    WHERE = 'WHERE {clause} '
-    AND_CLAUSE = 'AND {clause} '
-    ORDER_BY = 'ORDER BY {column} {type} '
-    GROUP_BY = 'GROUP BY {column} '
-    HAVING = 'HAVING {clause} '
-    LIMIT = 'LIMIT {count} '
