@@ -58,7 +58,10 @@ def get_query_list_threads(data, has_forum):
     if has_forum:
         query.add_left_join("forum as f", "t.forum = f.short_name")
 
-    query.add_where_condition("t.forum = \"{}\"".format(data["forum"]))
+    if data.get("forum"):
+        query.add_where_condition("t.forum = \"{}\"".format(data["forum"]))
+    else:
+        query.add_where_condition("t.user = \"{}\"".format(data["user"]))
 
     if "since" in data:
         query.add_more_where_condition("t.date > \"{}\"".format(data["since"]))
@@ -129,3 +132,4 @@ def get_query_update_thread(thread, message, slug):
     query.add_where_condition(" id = {}".format(thread))
 
     return query
+

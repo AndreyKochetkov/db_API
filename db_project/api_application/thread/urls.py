@@ -8,6 +8,7 @@ from views.remove import remove
 from views.restore import restore
 from views.vote import vote
 from views.update import update
+from views.list import list
 
 urlpatterns = [
     url(r'^create/', create, name="create"),
@@ -19,5 +20,6 @@ urlpatterns = [
     url(r'^restore/', restore, name="restore"),
     url(r'^vote/', vote, name="vote"),
     url(r'^update/', update, name="update"),
+    url(r'^list/', list, name="list"),
 ]
 
