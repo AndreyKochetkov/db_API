@@ -104,6 +104,27 @@ def get_query_list_posts_by_thread(data):
     return query
 
 
+def get_query_list_posts_by_user(data):
+    query = Query()
+
+    columns = "id, message, date, isApproved, isHighlighted, isEdited, isSpam," \
+              "isDeleted, forum, thread, user, dislikes, likes, points, parent"
+
+    query.add_select("post", columns)
+
+    query.add_where_condition("user = \"{}\"".format(data["user"]))
+
+    if "since" in data:
+        query.add_more_where_condition("date > \"{}\"".format(data["since"]))
+
+    query.add_order_by("date", data["order"])
+
+    if "limit" in data:
+        query.add_limit(data["limit"])
+
+    return query
+
+
 def get_query_remove_post_for_id(post):
     query = Query()
 

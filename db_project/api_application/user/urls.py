@@ -4,7 +4,7 @@ from views.details import details
 from views.follow import follow
 #from views.listFollowers import listFollowers
 #from views.listFollowing import listFollowing
-#from views.listPosts import listPosts
+from views.listPosts import listPosts
 from views.unfollow import unfollow
 from views.updateProfile import updateProfile
 
@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^follow/', follow, name="follow"),
    # url(r'^listFollowers/', listFollowers),
    # url(r'^listFollowing/', listFollowing),
-   # url(r'^listPosts/', listPosts),
+    url(r'^listPosts/', listPosts, name="listPosts"),
     url(r'^unfollow/', unfollow, name="unfollow"),
     url(r'^updateProfile/', updateProfile, name="updateProfile"),
 ]

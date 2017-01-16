@@ -5,24 +5,23 @@ from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
 from api_application.utils.logger import get_logger
-from api_application.forum.handlers.listPosts import get_list_of_posts
-
+from api_application.user.handlers.listPosts import get_list_of_posts
 
 @csrf_exempt
 def listPosts(request):
     logger = get_logger()
-    logger.debug("/forum/listThreads: \n")
+    logger.debug("/user/listPosts: \n")
     code = Code()
     try:
         data = {
-            "forum": str(request.GET.get("forum"))
+            "user": str(request.GET.get("user"))
         }
     except:
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
-    if not data["forum"]:
+    if not data["user"]:
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
-                                   'response': 'incorrect forum format'}))
+                                   'response': 'incorrect suer format'}))
 
     ##################### optional arguments   #####################
 
@@ -39,12 +38,7 @@ def listPosts(request):
     else:
         data["order"] = "desc"
 
-    related = request.GET.getlist('related')
-    if related:
-        logger.debug("\n\n\n ! related: ")
-        logger.debug(related)
-
     logger.debug(str(data))
 
-    response = get_list_of_posts(data, related)
+    response = get_list_of_posts(data)
     return HttpResponse(dumps(response))
