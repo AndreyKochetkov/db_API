@@ -15,7 +15,7 @@ def unsubscribe_user(thread, user):
     try:
         query = Query()
         query.add_delete("subscribe")
-        query.add_where_condition(" user = {} and thread = {} ".format(user, thread))
+        query.add_where_condition(" user = \"{}\" and thread = {} ".format(user, thread))
         logger.debug("insert unsubscribe: " + query.get())
         cursor.execute(query.get())
 

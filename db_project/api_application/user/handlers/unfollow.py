@@ -16,7 +16,7 @@ def unfollow_user(follower, followee):
     try:
         query = Query()
         query.add_delete("follow")
-        query.add_where_condition(" follower = \"{}\" and followee = \"{}\" ".format(follower, followee))
+        query.add_where_condition(" follower = \"{}\" and following = \"{}\" ".format(follower, followee))
         logger.debug("delete follow: " + query.get())
         cursor.execute(query.get())
 

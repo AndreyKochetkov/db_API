@@ -12,7 +12,7 @@ def get_list_of_users(data):
     cursor = connection.cursor()
     code = Code()
     try:
-        query = get_query_users_by_followers(data)
+        query = get_query_users_by_followers(data, True)
         logger.debug(query.get())
         cursor.execute(query.get())
         if not cursor.rowcount:

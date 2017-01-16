@@ -38,7 +38,6 @@ def listFollowers(request):
         data["order"] = str(order)
     else:
         data["order"] = "desc"
-    print data
 
     response = get_list_of_users(data)
     return HttpResponse(dumps(response))

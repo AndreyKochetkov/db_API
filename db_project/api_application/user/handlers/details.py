@@ -38,8 +38,16 @@ def validate_user(user):
         followers = []
     try:
         subscriptions = user[8].split(',')
+        logger = get_logger()
+        logger.debug(type(subscriptions))
+        logger.debug(str(subscriptions))
+        new_subs = []
+        for sub in subscriptions:
+            new_subs.append(int(sub))
+        logger.debug(type(new_subs))
+        logger.debug(str(new_subs))
     except:
-        subscriptions = []
+        new_subs = []
 
     response = {
         "id": user[0],
@@ -50,6 +58,6 @@ def validate_user(user):
         "isAnonymous": bool(user[5]),
         "following": following,
         "followers": followers,
-        "subscriptions": subscriptions
+        "subscriptions": new_subs
     }
     return response

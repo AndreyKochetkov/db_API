@@ -82,7 +82,6 @@ class Query:
 
 
     def select_last_insert_id(self):
-        """select last insert id"""
         self.clear()
         self.__sentence = "SELECT LAST_INSERT_ID()"
 
@@ -92,9 +91,6 @@ class Query:
     def add_more_where_condition(self, condition):
         self.__sentence += " and {}".format(condition)
 
-    def add_delete(self, table):
-        self.clear()
-        self.__sentence = "TRUNCATE TABLE {}".format(table)
 
     def add_left_join(self, table, condition):
         self.__sentence += " LEFT JOIN {} ON {} ".format(table, condition)
