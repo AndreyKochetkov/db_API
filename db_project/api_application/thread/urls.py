@@ -10,6 +10,9 @@ from views.vote import vote
 from views.update import update
 from views.list import list
 from views.unsubscribe import unsubscribe
+from views.listPosts import listPosts
+
+
 urlpatterns = [
     url(r'^create/', create, name="create"),
     url(r'^subscribe/', subscribe, name="subscribe"),
@@ -22,5 +25,6 @@ urlpatterns = [
     url(r'^vote/', vote, name="vote"),
     url(r'^update/', update, name="update"),
     url(r'^list/', list, name="list"),
+    url(r'^listPosts/', listPosts, name="listPosts"),
 ]
 

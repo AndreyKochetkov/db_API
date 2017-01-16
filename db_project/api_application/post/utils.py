@@ -9,6 +9,13 @@ def get_query_id_post_by_id(post_id):
     return query
 
 
+def get_query_parent_thread_and_forum(post):
+    query = Query()
+    query.add_select("post", "forum, thread ")
+    query.add_where_condition("id = \"{}\"".format(post))
+    return query
+
+
 def get_query_thread_of_post_by_id(post_id):
     query = Query()
     query.add_select("post", ["thread"])
@@ -43,7 +50,6 @@ def get_query_detail_post_by_id(id_post, has_forum, has_thread):
 
 def get_query_list_posts_by_forum(data, has_forum, has_thread):
     query = Query()
-
     columns = "p.id, p.message, p.date, p.isApproved, p.isHighlighted, p.isEdited, p.isSpam,   " \
               "p.isDeleted, p.forum, p.thread, p.user, p.dislikes, p.likes,  p.points, p.parent"
     if has_forum:
@@ -158,4 +164,43 @@ def get_query_vote_post(post, vote):
     logger.debug(query.get())
     query.add_where_condition(" id = {}".format(post))
     logger.debug(query.get())
+    return query
+
+
+def get_query_list_root_posts(data):
+    query = Query()
+    columns = "id, message, date, isApproved, isHighlighted, isEdited, isSpam,   " \
+              "isDeleted, forum, thread, user, dislikes, likes,  points, parent"
+
+    query.add_select("post", columns)
+
+    query.add_where_condition("parent is NULL ")
+    query.add_more_where_condition(" thread = {}".format(data["thread"]))
+
+    if "since" in data:
+        query.add_more_where_condition("date > \"{}\"".format(data["since"]))
+
+    query.add_order_by("date", data["order"])
+
+    if "limit" in data:
+        query.add_limit(data["limit"])
+    return query
+
+
+def get_query_list_child_posts(data, id_parent, do_limit=None):
+    query = Query()
+    columns = "id, message, date, isApproved, isHighlighted, isEdited, isSpam,   " \
+              "isDeleted, forum, thread, user, dislikes, likes,  points, parent"
+
+    query.add_select("post", columns)
+
+    query.add_where_condition("parent = {}".format(id_parent))
+
+    if "since" in data:
+        query.add_more_where_condition("date > \"{}\"".format(data["since"]))
+
+    if do_limit:
+        query.add_limit(data["limit"])
+
+    query.add_order_by("date", "asc")
     return query

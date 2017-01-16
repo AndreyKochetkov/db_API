@@ -6,9 +6,8 @@ from api_application.utils.Query import Query
 from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
 from api_application.thread.utils import get_query_id_thread_by_id, get_query_increment_posts
-from api_application.post.utils import get_query_id_post_by_id
+from api_application.post.utils import get_query_parent_thread_and_forum
 from api_application.utils.logger import get_logger
-
 
 
 def create_post(data):
@@ -68,7 +67,7 @@ def create_post(data):
     if data.get("parent") is not None:
         try:
 
-            query = get_query_id_post_by_id(data["parent"])
+            query = get_query_parent_thread_and_forum(data["parent"])
             cursor.execute(query.get())
             logger.debug("get_post_by_id" + query.get())
             if not cursor.rowcount:
@@ -76,10 +75,20 @@ def create_post(data):
                 return {'code': code.NOT_FOUND,
                         'response': 'post not found'}
 
+            res = cursor.fetchone()
+            if res[0] != data["forum"]:
+                cursor.close()
+                return {'code': code.NOT_FOUND,
+                        'response': 'parent is not in this forum'}
+            if res[1] != data["thread"]:
+                cursor.close()
+                return {'code': code.NOT_FOUND,
+                        'response': 'parent is not in this thread '}
+
         except:
             cursor.close()
             return {'code': code.UNKNOWN_ERROR,
-                    'response': 'post select failed'}
+                    'response': 'select parent post failed'}
 
     ######################## insert ###################
 
@@ -103,7 +112,6 @@ def create_post(data):
     except:
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
-
 
     try:
         query = get_query_increment_posts(data["thread"])
