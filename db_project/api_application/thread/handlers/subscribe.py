@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
 from django.db import connection
-from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
 from api_application.utils.Query import Query
 from api_application.utils.logger import get_logger
 
 
-@csrf_exempt
 def subscribe_user(thread, user):
     logger = get_logger()
     logger.debug("/thread/subscribe: \n")

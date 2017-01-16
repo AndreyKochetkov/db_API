@@ -1,28 +1,17 @@
 # -*- coding: utf-8 -*-
-from json import dumps, loads
-from django.http import HttpResponse
 from django.db import connection
-from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.utils.Query import Query
+from api_application.utils.logger import get_logger
+from api_application.user.handlers.details import get_detail_user
 
 
-@csrf_exempt
-def follow(request):
+def follow_user(follower, followee):
     logger = get_logger()
     logger.debug("/user/follow: \n")
     cursor = connection.cursor()
     code = Code()
-    try:
-        request_data = loads(request.body)
-
-        follower = request_data["follower"]
-        followee = request_data["followee"]
-    except:
-        cursor.close()
-        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     try:
         query = Query()
@@ -32,11 +21,8 @@ def follow(request):
 
     except:
         cursor.close()
-        return HttpResponse(dumps({'code': code.UNKNOWN_ERROR, "response": "insert failed"}))
+        return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 
     cursor.close()
-    user = cursor.fetchone()
-    response = {
-
-    }
-    return HttpResponse(dumps({'code': code.OK, "response (заглушка)": response}))
+    response = get_detail_user(follower)
+    return {'code': code.OK, "response": response}

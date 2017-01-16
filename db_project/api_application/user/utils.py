@@ -57,3 +57,11 @@ def get_query_users_by_forum(data):
     if "limit" in data:
         query.add_limit(data["limit"])
     return query
+
+
+def get_query_update_user(user, about, name):
+    query = Query()
+    query.add_update("user", " about = \"{}\", name = \"{}\" ".format(about, name))
+    query.add_where_condition(" email = \"{}\"".format(user))
+
+    return query
