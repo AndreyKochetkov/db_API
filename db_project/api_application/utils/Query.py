@@ -75,6 +75,12 @@ class Query:
             table, data
         )
 
+    def add_delete(self, table):
+        self.__sentence = "delete from {} ".format(table)
+
+
+
+
     def select_last_insert_id(self):
         """select last insert id"""
         self.clear()

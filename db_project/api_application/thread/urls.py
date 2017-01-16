@@ -9,10 +9,11 @@ from views.restore import restore
 from views.vote import vote
 from views.update import update
 from views.list import list
-
+from views.unsubscribe import unsubscribe
 urlpatterns = [
     url(r'^create/', create, name="create"),
     url(r'^subscribe/', subscribe, name="subscribe"),
+    url(r'^unsubscribe/', unsubscribe, name="unsubscribe"),
     url(r'^details/', details, name="details"),
     url(r'^close/', close, name="close"),
     url(r'^open/', open, name="open"),
