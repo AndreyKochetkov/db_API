@@ -1,7 +1,6 @@
 from django.db import connection
 
 from api_application.utils.Code import Code
-from api_application.utils.Query import Query
 from api_application.utils.logger import get_logger
 from api_application.user.utils import get_query_users_by_forum
 from api_application.user.handlers.details import validate_user

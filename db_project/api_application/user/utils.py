@@ -65,3 +65,32 @@ def get_query_update_user(user, about, name):
     query.add_where_condition(" email = \"{}\"".format(user))
 
     return query
+
+
+def get_query_users_by_followers(data, follower=None):
+    query = Query()
+    columns = 'u.*, group_concat(distinct f.following),' \
+              'group_concat(distinct f1.follower),' \
+              'group_concat(distinct s.thread)'
+    query.add_select("user as u", columns)
+    query.add_left_join("follow as f", "u.email = f.follower")
+    query.add_left_join("follow as f1", "u.email = f1.following")
+    query.add_left_join("subscribe as s", "u.email= s.user")
+    query.add_left_join("post as p", "p.user = u.email")
+    if follower:
+        query.add_where_condition("f.following = \"{}\"".format(data["user"]))
+    else:
+        query.add_where_condition("f.follower = \"{}\"".format(data["user"]))
+
+    if "since_id" in data:
+        query.add_more_where_condition(" u.id >= {}".format(data["since_id"]))
+    if follower:
+        query.add_group_by("f.follower")
+    else:
+        query.add_group_by("f.following")
+    query.add_order_by("u.name", data["order"])
+
+    if "limit" in data:
+        query.add_limit(data["limit"])
+
+    return query
