@@ -18,7 +18,7 @@ def clear(request):
     query = Query()
     for table in ['follow', 'subscribe',
                   'post', 'thread', 'forum', 'user']:
-        query.add_delete(table)
+        query.add_delete_clear(table)
         cursor.execute(query.get())
         cursor.execute(reset_increment(table))
     result = {"code": code.OK,

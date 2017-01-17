@@ -64,6 +64,10 @@ class Query:
             table, data
         )
 
+    def add_delete_clear(self, table):
+        self.clear()
+        self.__sentence = "TRUNCATE TABLE {}".format(table)
+
     def add_delete(self, table):
         self.__sentence = "delete from {} ".format(table)
 
