@@ -14,14 +14,13 @@ def clear(request):
     cursor = connection.cursor()
     set_fk = "SET FOREIGN_KEY_CHECKS = 0;"
     cursor.execute(set_fk)
-    code = Code()
     query = Query()
     for table in ['follow', 'subscribe',
                   'post', 'thread', 'forum', 'user']:
         query.add_delete_clear(table)
         cursor.execute(query.get())
         cursor.execute(reset_increment(table))
-    result = {"code": code.OK,
+    result = {"code": Code.OK,
               "response": "OK"
               }
     set_fk_1 = '''SET FOREIGN_KEY_CHECKS = 1;'''

@@ -11,7 +11,6 @@ from api_application.utils.Query import Query
 @csrf_exempt
 def status(request):
     cursor = connection.cursor()
-    code = Code()
     query = Query()
     response = {}
     for table in ['post', 'thread', 'forum', 'user']:
@@ -20,4 +19,4 @@ def status(request):
         cursor.execute(query.get())
         response[table] = cursor.fetchone()[0]
     cursor.close()
-    return HttpResponse(dumps({'code': code.OK, "response": response}))
+    return HttpResponse(dumps({'code': Code.OK, "response": response}))
