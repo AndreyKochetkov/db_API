@@ -2,6 +2,8 @@
 
 
 class Query:
+    def __init__(self):
+        pass
     __sentence = ""
 
     def get(self):
