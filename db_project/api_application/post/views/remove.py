@@ -9,7 +9,7 @@ from api_application.post.handlers.remove import remove_post
 
 @csrf_exempt
 def remove(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

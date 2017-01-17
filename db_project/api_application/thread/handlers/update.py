@@ -8,7 +8,7 @@ from api_application.thread.handlers.details import get_detail_thread
 
 def update_thread(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     thread = data["thread"]
     try:
         query = get_query_update_thread(thread, data["message"], data["slug"])

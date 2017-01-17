@@ -7,7 +7,7 @@ from api_application.post.utils import get_query_list_root_posts, get_query_list
 def get_list_posts_t(data):
 
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     has_limit = data.get("limit", False)
     try:
         query = get_query_list_root_posts(data)

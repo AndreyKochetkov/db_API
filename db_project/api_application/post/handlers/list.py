@@ -7,7 +7,7 @@ from api_application.post.utils import get_query_list_posts_by_thread, get_query
 
 def get_list(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     if "since" in data:
         data["since"] = validate_date(data["since"])
     try:

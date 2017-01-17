@@ -9,7 +9,7 @@ from api_application.thread.handlers.subscribe import subscribe_user
 
 @csrf_exempt
 def subscribe(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
 

@@ -7,7 +7,7 @@ from api_application.thread.utils import get_query_close_thread
 
 def close_thread(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     thread = data["thread"]
     try:
         query = get_query_close_thread(thread)

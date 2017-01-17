@@ -8,7 +8,7 @@ from api_application.user.handlers.details import get_detail_user
 
 def get_detail_forum(short_name, related):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     try:
         query = get_query_forum_by_short_name(short_name)

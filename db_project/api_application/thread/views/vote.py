@@ -8,7 +8,7 @@ from api_application.thread.handlers.vote import vote_thread
 
 @csrf_exempt
 def vote(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

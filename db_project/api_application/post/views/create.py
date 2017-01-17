@@ -10,7 +10,7 @@ from api_application.post.handlers.create import create_post
 
 @csrf_exempt
 def create(request):
-    code = Code()
+    code = Code
     try:
 
         request_data = loads(request.body)

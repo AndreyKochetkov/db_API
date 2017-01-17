@@ -10,7 +10,7 @@ from api_application.thread.utils import get_query_for_remove_thread
 
 def create_thread(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     ########### user verification ##############
 

@@ -9,7 +9,7 @@ from api_application.user.handlers.follow import follow_user
 
 @csrf_exempt
 def follow(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
 

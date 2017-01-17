@@ -8,7 +8,7 @@ from api_application.user.handlers.details import get_detail_user
 
 def unfollow_user(follower, followee):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     try:
         query = Query()

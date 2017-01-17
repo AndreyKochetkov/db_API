@@ -9,7 +9,7 @@ from api_application.forum.handlers.listThreads import get_list_of_threads
 
 @csrf_exempt
 def listThreads(request):
-    code = Code()
+    code = Code
     try:
         data = {
             "forum": str(request.GET.get("forum"))

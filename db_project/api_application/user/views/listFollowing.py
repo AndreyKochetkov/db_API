@@ -9,7 +9,7 @@ from api_application.user.handlers.listFollowing import get_list_of_users
 
 @csrf_exempt
 def listFollowing(request):
-    code = Code()
+    code = Code
     try:
         data = {
             "user": str(request.GET.get("user"))

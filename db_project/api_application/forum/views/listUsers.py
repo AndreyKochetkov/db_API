@@ -9,7 +9,7 @@ from api_application.forum.handlers.listUsers import get_list_of_users
 
 @csrf_exempt
 def listUsers(request):
-    code = Code()
+    code = Code
     try:
         data = {
             "forum": str(request.GET.get("forum"))

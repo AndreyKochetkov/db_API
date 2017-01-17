@@ -9,7 +9,7 @@ from api_application.post.handlers.list import get_list
 
 @csrf_exempt
 def list(request):
-    code = Code()
+    code = Code
     data = None
     if request.GET.get("forum"):
         data = {

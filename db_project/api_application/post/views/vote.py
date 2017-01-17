@@ -9,7 +9,7 @@ from api_application.post.handlers.vote import vote_post
 
 @csrf_exempt
 def vote(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

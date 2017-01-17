@@ -7,7 +7,7 @@ from api_application.thread.utils import get_query_list_threads
 
 def get_list(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     if "since" in data:
         data["since"] = validate_date(data["since"])
     try:

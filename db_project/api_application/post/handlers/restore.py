@@ -8,7 +8,7 @@ from api_application.thread.utils import get_query_increment_posts
 
 def restore_post(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     post = data["post"]
     try:
         query = get_query_restore_post_for_id(post)

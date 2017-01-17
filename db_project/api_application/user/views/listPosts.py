@@ -8,7 +8,7 @@ from api_application.user.handlers.listPosts import get_list_of_posts
 
 @csrf_exempt
 def listPosts(request):
-    code = Code()
+    code = Code
     try:
         data = {
             "user": str(request.GET.get("user"))

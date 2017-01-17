@@ -9,7 +9,7 @@ from api_application.thread.handlers.unsubscribe import unsubscribe_user
 
 @csrf_exempt
 def unsubscribe(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
 

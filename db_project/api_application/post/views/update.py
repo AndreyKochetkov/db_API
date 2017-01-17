@@ -9,7 +9,7 @@ from api_application.post.handlers.update import update_post
 
 @csrf_exempt
 def update(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

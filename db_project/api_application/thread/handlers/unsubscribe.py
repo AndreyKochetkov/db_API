@@ -7,7 +7,7 @@ from api_application.utils.Query import Query
 
 def unsubscribe_user(thread, user):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     try:
         query = Query()

@@ -9,7 +9,7 @@ from api_application.forum.handlers.create import create_forum
 
 @csrf_exempt
 def create(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

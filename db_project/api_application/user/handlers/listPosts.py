@@ -8,7 +8,7 @@ from api_application.post.utils import get_query_list_posts_by_user
 def get_list_of_posts(data):
 
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     if "since" in data:
         data["since"] = validate_date(data["since"])
     try:

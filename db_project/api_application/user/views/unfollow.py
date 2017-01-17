@@ -9,7 +9,7 @@ from api_application.user.handlers.unfollow import unfollow_user
 
 @csrf_exempt
 def unfollow(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
 

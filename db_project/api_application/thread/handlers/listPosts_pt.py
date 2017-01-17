@@ -6,7 +6,7 @@ from api_application.post.utils import get_query_list_root_posts, get_query_list
 
 def get_list_posts_pt(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     try:
         query = get_query_list_root_posts(data)
         cursor.execute(query.get())

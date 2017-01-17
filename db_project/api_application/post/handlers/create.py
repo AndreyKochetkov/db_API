@@ -10,7 +10,7 @@ from api_application.post.utils import get_query_parent_thread_and_forum
 
 def create_post(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     ###########  user verification ##############
 

@@ -8,7 +8,7 @@ from api_application.thread.utils import get_query_decrement_posts
 
 def remove_post(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     post = data["post"]
     try:
         query = get_query_remove_post_for_id(post)

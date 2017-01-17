@@ -8,7 +8,7 @@ from api_application.user.handlers.details import get_detail_user
 
 def update_user(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     user = data["user"]
     try:
         query = get_query_update_user(user, data["about"], data["name"])

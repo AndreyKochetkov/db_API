@@ -7,7 +7,7 @@ from api_application.utils.Code import Code
 
 def create_forum(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     try:
         query = get_query_id_user_by_email(data["user"])

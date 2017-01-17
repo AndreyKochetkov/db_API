@@ -9,7 +9,7 @@ from api_application.user.handlers.updateProfile import update_user
 
 @csrf_exempt
 def updateProfile(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

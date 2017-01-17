@@ -9,7 +9,7 @@ from api_application.thread.handlers.restore import restore_thread
 
 @csrf_exempt
 def restore(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

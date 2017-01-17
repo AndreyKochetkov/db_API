@@ -7,7 +7,7 @@ from api_application.user.handlers.details import validate_user
 
 def get_list_of_users(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     try:
         query = get_query_users_by_forum(data)
         cursor.execute(query.get())

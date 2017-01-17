@@ -8,7 +8,7 @@ from api_application.post.handlers.details import get_detail_post
 
 def vote_post(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     post = data["post"]
     try:
         query = get_query_vote_post(post, data["vote"])

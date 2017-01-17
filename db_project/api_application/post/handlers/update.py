@@ -8,7 +8,7 @@ from api_application.post.handlers.details import get_detail_post
 
 def update_post(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     post = data["post"]
     try:
         query = get_query_update_post(post, data["message"])

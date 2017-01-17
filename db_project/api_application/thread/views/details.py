@@ -9,7 +9,7 @@ from api_application.thread.handlers.details import get_detail_thread
 
 @csrf_exempt
 def details(request):
-    code = Code()
+    code = Code
     id_thread = request.GET.get('thread')
     if not id_thread:
         return HttpResponse(dumps({'code': code.NOT_VALID,

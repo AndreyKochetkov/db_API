@@ -9,7 +9,7 @@ from api_application.post.handlers.details import get_detail_post
 
 @csrf_exempt
 def details(request):
-    code = Code()
+    code = Code
     if request.method != 'GET':
         return HttpResponse(dumps({'code': code.NOT_VALID,
                                    'response': 'request method should be GET'}))

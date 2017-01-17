@@ -9,7 +9,7 @@ from api_application.thread.handlers.listPosts_t import get_list_posts_t
 
 def get_list_of_posts(data):
     cursor = None
-    code = Code()
+    code = Code
     if "since" in data:
         data["since"] = validate_date(data["since"])
     try:

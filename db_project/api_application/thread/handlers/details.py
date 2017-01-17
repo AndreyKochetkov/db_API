@@ -10,7 +10,7 @@ def get_detail_thread(id_thread, related=None):
     if related is None:
         related = []
     cursor = connection.cursor()
-    code = Code()
+    code = Code
 
     try:
         if "forum" in related:

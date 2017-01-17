@@ -10,7 +10,7 @@ def get_list_of_posts(data, related):
     if related is None:
         related = []
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     if "since" in data:
         data["since"] = validate_date(data["since"])
     try:

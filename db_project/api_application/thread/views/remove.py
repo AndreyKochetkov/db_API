@@ -8,7 +8,7 @@ from api_application.thread.handlers.remove import remove_thread
 
 @csrf_exempt
 def remove(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

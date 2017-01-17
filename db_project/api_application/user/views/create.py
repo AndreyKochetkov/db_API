@@ -8,7 +8,7 @@ from api_application.user.handlers.create import create_user
 
 @csrf_exempt
 def create(request):
-    code = Code()
+    code = Code
     # try to load needed data from request
     try:
         request_data = loads(request.body)

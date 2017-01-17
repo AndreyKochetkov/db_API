@@ -8,7 +8,7 @@ from api_application.post.utils import get_query_restore_post_for_thread
 
 def restore_thread(data):
     cursor = connection.cursor()
-    code = Code()
+    code = Code
     thread = data["thread"]
     try:
         query = get_query_restore_thread(thread)

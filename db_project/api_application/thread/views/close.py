@@ -8,7 +8,7 @@ from api_application.thread.handlers.close import close_thread
 
 @csrf_exempt
 def close(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
         data = {

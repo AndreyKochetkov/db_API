@@ -9,7 +9,7 @@ from api_application.thread.handlers.create import create_thread
 
 @csrf_exempt
 def create(request):
-    code = Code()
+    code = Code
     try:
         request_data = loads(request.body)
 
