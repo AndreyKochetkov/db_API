@@ -2,12 +2,10 @@
 from django.db import connection
 
 from api_application.user.utils import get_query_id_user_by_email
-from api_application.utils.logger import get_logger
 from api_application.utils.Code import Code
 
 
 def create_forum(data):
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
 
@@ -16,11 +14,9 @@ def create_forum(data):
         cursor.execute(query.get())
     except:
         cursor.close()
-        logger.debug("error create forum select user failed")
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
     if cursor.fetchone() is None:
-        logger.debug("error forum user doesn't exists")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "user doesn't exists"}
 
@@ -31,7 +27,6 @@ def create_forum(data):
 
     except:
         cursor.close()
-        logger.debug("error create forum short_name or name exist")
         return {'code': code.UNKNOWN_ERROR, "response": "short_name or name exist"}
     try:
         query.clear()
@@ -41,7 +36,6 @@ def create_forum(data):
         forum_id = cursor.fetchone()[0]
     except:
         cursor.close()
-        logger.debug("error create forum select last id failed")
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
     data["id"] = forum_id

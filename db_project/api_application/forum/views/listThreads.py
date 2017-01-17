@@ -4,24 +4,20 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.forum.handlers.listThreads import get_list_of_threads
 
 
 @csrf_exempt
 def listThreads(request):
-    logger = get_logger()
     code = Code()
     try:
         data = {
             "forum": str(request.GET.get("forum"))
         }
     except:
-        logger.debug("error list thread forum v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["forum"]:
-        logger.debug("error list thread forum v")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect forum format'}))
 

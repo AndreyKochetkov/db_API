@@ -4,13 +4,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.post.handlers.list import get_list
 
 
 @csrf_exempt
 def list(request):
-    logger = get_logger()
     code = Code()
     data = None
     if request.GET.get("forum"):
@@ -22,10 +20,8 @@ def list(request):
             "thread": request.GET.get("thread")
         }
     if data is None:
-        logger.debug("error list post")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "data in None "}))
     if len(data) > 1:
-        logger.debug("error list post")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "forum or thread only"}))
 
     ##################### optional arguments   #####################

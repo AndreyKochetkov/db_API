@@ -1,7 +1,6 @@
 from django.db import connection
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.user.handlers.details import validate_user
 from api_application.thread.utils import get_query_list_threads
 from api_application.utils.validate import validate_date
@@ -11,7 +10,6 @@ from api_application.user.handlers.details import get_detail_user
 def get_list_of_threads(data, related):
     if related is None:
         related = []
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
     if "since" in data:
@@ -29,7 +27,6 @@ def get_list_of_threads(data, related):
                     'response': []}
     except:
         cursor.close()
-        logger.debug("error list threads forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select threads'}
     response = []

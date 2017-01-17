@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.db import connection
 
-from api_application.utils.logger import get_logger
 from api_application.utils.Code import Code
 from api_application.thread.utils import get_query_remove_thread
 from api_application.post.utils import get_query_remove_post_for_thread
 
 
 def remove_thread(data):
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
     thread = data["thread"]
@@ -17,14 +15,12 @@ def remove_thread(data):
         cursor.execute(query.get())
     except:
         cursor.close()
-        logger.debug("error remove thread")
         return {'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}
     try:
         query = get_query_remove_post_for_thread(thread)
         cursor.execute(query.get())
     except:
         cursor.close()
-        logger.debug("error remove thread")
         return {'code': code.UNKNOWN_ERROR, "response": "remove post failed"}
 
     response = {

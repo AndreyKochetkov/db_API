@@ -3,11 +3,9 @@ from django.db import connection
 
 from api_application.utils.Code import Code
 from api_application.utils.Query import Query
-from api_application.utils.logger import get_logger
 
 
 def subscribe_user(thread, user):
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
 
@@ -17,7 +15,6 @@ def subscribe_user(thread, user):
         cursor.execute(query.get())
 
     except:
-        logger.debug("error subscribe thread")
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 

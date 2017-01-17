@@ -4,13 +4,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.thread.handlers.create import create_thread
 
 
 @csrf_exempt
 def create(request):
-    logger = get_logger()
     code = Code()
     try:
         request_data = loads(request.body)
@@ -25,7 +23,6 @@ def create(request):
             "date": request_data["date"]
         }
     except:
-        logger.debug("error create thread")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
 

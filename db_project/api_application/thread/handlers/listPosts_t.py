@@ -1,12 +1,10 @@
 from django.db import connection
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.post.utils import get_query_list_root_posts, get_query_list_child_posts
 
 
 def get_list_posts_t(data):
-    logger = get_logger()
 
     cursor = connection.cursor()
     code = Code()
@@ -21,7 +19,6 @@ def get_list_posts_t(data):
 
     except:
         cursor.close()
-        logger.debug("error list posts t thread")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select root posts'}
     response = []
@@ -87,7 +84,6 @@ def get_list_posts_t(data):
 
 
             except:
-                logger.debug("error list posts t thread")
                 cursor.close()
                 return {'code': code.UNKNOWN_ERROR,
                         'response': 'failed select child posts'}

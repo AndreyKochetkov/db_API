@@ -1,11 +1,9 @@
 from django.db import connection
 
 from api_application.utils.Query import Query
-from api_application.utils.logger import get_logger
 
 
 def create_user(data):
-    logger = get_logger()
     cursor = connection.cursor()
 
     # insert user in db

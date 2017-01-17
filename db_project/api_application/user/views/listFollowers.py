@@ -4,24 +4,20 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.user.handlers.listFollowers import get_list_of_users
 
 
 @csrf_exempt
 def listFollowers(request):
-    logger = get_logger()
     code = Code()
     try:
         data = {
             "user": str(request.GET.get("user"))
         }
     except:
-        logger.debug("error followers user")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["user"]:
-        logger.debug("error followers user")
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'incorrect forum format'}))
 

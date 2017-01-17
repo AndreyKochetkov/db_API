@@ -4,13 +4,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.user.handlers.follow import follow_user
 
 
 @csrf_exempt
 def follow(request):
-    logger = get_logger()
     code = Code()
     try:
         request_data = loads(request.body)
@@ -18,7 +16,6 @@ def follow(request):
         follower = request_data["follower"]
         followee = request_data["followee"]
     except:
-        logger.debug("error follow user v")
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     response = follow_user(follower, followee)

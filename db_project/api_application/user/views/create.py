@@ -3,13 +3,11 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from api_application.utils.Code import Code
-from api_application.utils.logger import get_logger
 from api_application.user.handlers.create import create_user
 
 
 @csrf_exempt
 def create(request):
-    logger = get_logger()
     code = Code()
     # try to load needed data from request
     try:
@@ -23,7 +21,6 @@ def create(request):
         }
     # except if we have invalid json
     except:
-        logger.debug("error create user")
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "failed loads"}))
 
     # try to get optional parameter
@@ -37,7 +34,6 @@ def create(request):
                     "isAnonymous": 1
                 }
         else:
-            logger.debug("error create user")
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
     # except if we have not an optional parameter
     except:
@@ -48,5 +44,4 @@ def create(request):
     if response is not None:
         return HttpResponse(dumps({'code': code.OK, "response": response}))
     else:
-        logger.debug("error create user")
         return HttpResponse(dumps({'code': code.USER_EXISTS, "response": "insert error"}))

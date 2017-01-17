@@ -1,11 +1,9 @@
 from django.db import connection
 
 from api_application.user.utils import get_query_detail_user_by_email
-from api_application.utils.logger import get_logger
 
 
 def get_detail_user(email):
-    logger = get_logger()
     cursor = connection.cursor()
     try:
         query = get_query_detail_user_by_email(email)

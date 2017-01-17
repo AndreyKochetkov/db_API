@@ -3,12 +3,10 @@ from django.db import connection
 
 from api_application.utils.Code import Code
 from api_application.forum.utils import get_query_forum_by_short_name
-from api_application.utils.logger import get_logger
 from api_application.user.handlers.details import get_detail_user
 
 
 def get_detail_forum(short_name, related):
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
 
@@ -16,13 +14,11 @@ def get_detail_forum(short_name, related):
         query = get_query_forum_by_short_name(short_name)
         cursor.execute(query.get())
         if not cursor.rowcount:
-            logger.debug("error detail forum")
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'forum not found'}
     except:
         cursor.close()
-        logger.debug("error detail forum")
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select forum'}
 
@@ -36,7 +32,6 @@ def get_detail_forum(short_name, related):
     if related:
         if related != 'user':
             cursor.close()
-            logger.debug("error detail forum")
             return {'code': code.NOT_CORRECT,
                     'response': 'incorrect related parameter: {}'.format(related)}
 

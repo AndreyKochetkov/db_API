@@ -126,22 +126,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': '/Users/AndreyKochetkov/db_api/db_project/debug.log',
-        },
-    },
-    'loggers': {
-        'api_application': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}

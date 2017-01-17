@@ -6,11 +6,9 @@ from api_application.user.utils import get_query_id_user_by_email
 from api_application.forum.utils import get_query_id_forum_by_short_name
 from api_application.utils.validate import validate_date
 from api_application.thread.utils import get_query_for_remove_thread
-from api_application.utils.logger import get_logger
 
 
 def create_thread(data):
-    logger = get_logger()
     cursor = connection.cursor()
     code = Code()
 
@@ -20,13 +18,11 @@ def create_thread(data):
         query = get_query_id_user_by_email(data["user"])
         cursor.execute(query.get())
     except:
-        logger.debug("error create thread")
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
     if not cursor.rowcount:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_FOUND,
                 'response': 'user not found'}
 
@@ -40,12 +36,10 @@ def create_thread(data):
 
     except:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
     if not cursor.rowcount:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_FOUND,
                 'response': 'forum not found'}
     forum_id = cursor.fetchone()[0]
@@ -55,25 +49,21 @@ def create_thread(data):
     data["date"] = validate_date(data["date"])
     if not data["date"]:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_CORRECT,
                 'response': 'incorrect date format'}
 
     if not data["message"]:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_CORRECT,
                 'response': 'incorrect message format'}
 
     if not data["slug"]:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_CORRECT,
                 'response': 'slug should not be empty'}
 
     if not data["title"]:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.NOT_CORRECT,
                 'response': 'title should not be empty'}
 
@@ -86,7 +76,6 @@ def create_thread(data):
 
     except:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.UNKNOWN_ERROR, "response": "insert failed"}
     try:
         query.clear()
@@ -96,7 +85,6 @@ def create_thread(data):
         thread_id = cursor.fetchone()[0]
     except:
         cursor.close()
-        logger.debug("error create thread")
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
         ##################### optional arguments / remove thread  #####################
@@ -107,7 +95,6 @@ def create_thread(data):
                 cursor.execute(query.get())
 
             except:
-                logger.debug("error create thread")
                 cursor.close()
                 return {'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}
     except:
