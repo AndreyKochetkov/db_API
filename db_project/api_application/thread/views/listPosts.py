@@ -9,42 +9,45 @@ from api_application.thread.handlers.listPosts import get_list_of_posts
 
 @csrf_exempt
 def listPosts(request):
-    code = Code
     try:
-        data = {
-            "thread": str(request.GET.get("thread"))
-        }
-    except:
-        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
-    try:
-        data["thread"] = int(data["thread"])
-    except:
-        return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
-
-    ##################### optional arguments   #####################
-
-    since = request.GET.get("since")
-    if since is not None:
-        data["since"] = since
-    limit = request.GET.get("limit")
-
-    if limit is not None:
+        code = Code
         try:
-            data["limit"] = int(limit)
+            data = {
+                "thread": str(request.GET.get("thread"))
+            }
         except:
-            return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "limit isnt int"}))
+            return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
+        try:
+            data["thread"] = int(data["thread"])
+        except:
+            return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
-    order = request.GET.get("order")
-    if order is not None:
-        data["order"] = str(order)
-    else:
-        data["order"] = "desc"
+        ##################### optional arguments   #####################
 
-    sort = request.GET.get("sort")
-    if sort is not None:
-        data["sort"] = str(sort)
-    else:
-        data["sort"] = "flat"
+        since = request.GET.get("since")
+        if since is not None:
+            data["since"] = since
+        limit = request.GET.get("limit")
 
-    response = get_list_of_posts(data)
-    return HttpResponse(dumps(response))
+        if limit is not None:
+            try:
+                data["limit"] = int(limit)
+            except:
+                return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "limit isnt int"}))
+
+        order = request.GET.get("order")
+        if order is not None:
+            data["order"] = str(order)
+        else:
+            data["order"] = "desc"
+
+        sort = request.GET.get("sort")
+        if sort is not None:
+            data["sort"] = str(sort)
+        else:
+            data["sort"] = "flat"
+
+        response = get_list_of_posts(data)
+        return HttpResponse(dumps(response))
+    except:
+        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))

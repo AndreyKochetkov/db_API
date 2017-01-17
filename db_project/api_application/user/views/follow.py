@@ -9,14 +9,17 @@ from api_application.user.handlers.follow import follow_user
 
 @csrf_exempt
 def follow(request):
-    code = Code
     try:
-        request_data = loads(request.body)
+        code = Code
+        try:
+            request_data = loads(request.body)
 
-        follower = request_data["follower"]
-        followee = request_data["followee"]
+            follower = request_data["follower"]
+            followee = request_data["followee"]
+        except:
+            return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
+
+        response = follow_user(follower, followee)
+        return HttpResponse(dumps(response))
     except:
-        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
-
-    response = follow_user(follower, followee)
-    return HttpResponse(dumps(response))
+        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))

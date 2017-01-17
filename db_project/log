@@ -1,0 +1,7 @@
+[2017-01-17 23:42:55 +0300] [2533] [INFO] Starting gunicorn 19.6.0
+[2017-01-17 23:42:55 +0300] [2533] [INFO] Listening at: http://127.0.0.1:8000 (2533)
+[2017-01-17 23:42:55 +0300] [2533] [INFO] Using worker: sync
+[2017-01-17 23:42:55 +0300] [2536] [INFO] Booting worker with pid: 2536
+[2017-01-17 23:43:09 +0300] [2533] [INFO] Handling signal: int
+[2017-01-17 20:43:09 +0000] [2536] [INFO] Worker exiting (pid: 2536)
+[2017-01-17 23:43:09 +0300] [2533] [INFO] Shutting down: Master

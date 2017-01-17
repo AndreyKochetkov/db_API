@@ -10,13 +10,17 @@ from api_application.utils.Query import Query
 
 @csrf_exempt
 def status(request):
-    cursor = connection.cursor()
-    query = Query()
-    response = {}
-    for table in ['post', 'thread', 'forum', 'user']:
-        query.clear()
-        query.add_select(table, "count(*)")
-        cursor.execute(query.get())
-        response[table] = cursor.fetchone()[0]
-    cursor.close()
-    return HttpResponse(dumps({'code': Code.OK, "response": response}))
+    try:
+        cursor = connection.cursor()
+        query = Query()
+        response = {}
+        for table in ['post', 'thread', 'forum', 'user']:
+            query.clear()
+            query.add_select(table, "count(*)")
+            cursor.execute(query.get())
+            response[table] = cursor.fetchone()[0]
+        cursor.close()
+        return HttpResponse(dumps({'code': Code.OK, "response": response}))
+    except:
+        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))
+

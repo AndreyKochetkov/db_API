@@ -9,15 +9,18 @@ from api_application.forum.handlers.details import get_detail_forum
 
 @csrf_exempt
 def details(request):
-    code = Code
-    if request.method != 'GET':
-        return HttpResponse(dumps({'code': code.NOT_VALID,
-                                   'response': 'request method should be GET'}))
-    short_name = request.GET.get('forum')
-    if not short_name:
-        return HttpResponse(dumps({'code': code.NOT_VALID,
-                                   'response': 'forum name not found in request'}))
-    related = request.GET.get('related')
+    try:
+        code = Code
+        if request.method != 'GET':
+            return HttpResponse(dumps({'code': code.NOT_VALID,
+                                       'response': 'request method should be GET'}))
+        short_name = request.GET.get('forum')
+        if not short_name:
+            return HttpResponse(dumps({'code': code.NOT_VALID,
+                                       'response': 'forum name not found in request'}))
+        related = request.GET.get('related')
 
-    response = get_detail_forum(short_name, related)
-    return HttpResponse(dumps(response))
+        response = get_detail_forum(short_name, related)
+        return HttpResponse(dumps(response))
+    except:
+        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))
