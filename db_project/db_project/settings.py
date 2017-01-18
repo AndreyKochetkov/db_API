@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'forum_db',
         'USER': 'root',
-        'PASSWORD': 'battery',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '3306',
 
