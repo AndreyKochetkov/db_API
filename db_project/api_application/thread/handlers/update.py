@@ -13,7 +13,8 @@ def update_thread(data):
     try:
         query = get_query_update_thread(thread, data["message"], data["slug"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update thread delete failed"}
 

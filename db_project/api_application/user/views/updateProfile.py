@@ -17,20 +17,24 @@ def updateProfile(request):
             "about": request_data["about"],
             "name": request_data["name"],
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     try:
         data["user"] = str(data["user"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "message isnt correct"}))
     try:
         data["name"] = str(data["name"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "slug isnt correct"}))
     try:
         data["about"] = str(data["about"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "slug isnt correct"}))
 
     response = update_user(data)

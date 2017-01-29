@@ -17,7 +17,8 @@ def create_post(data):
     try:
         query = get_query_id_user_by_email(data["user"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
@@ -32,7 +33,8 @@ def create_post(data):
         query = get_query_id_forum_by_short_name(data["forum"])
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
@@ -47,7 +49,8 @@ def create_post(data):
         query = get_query_id_thread_by_id(data["thread"])
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
@@ -77,20 +80,21 @@ def create_post(data):
                 return {'code': code.NOT_FOUND,
                         'response': 'parent is not in this thread '}
 
-        except:
+        except Exception as e:
+            print str(e)
             cursor.close()
             return {'code': code.UNKNOWN_ERROR,
                     'response': 'select parent post failed'}
 
     ######################## insert ###################
 
-
     try:
         query.clear()
         query.add_insert("post", data.items())
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "insert failed"}
 
@@ -100,14 +104,16 @@ def create_post(data):
         query.select_last_insert_id()
         cursor.execute(query.get())
         post_id = cursor.fetchone()[0]
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
     try:
         query = get_query_increment_posts(data["thread"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update posts  failed"}
 

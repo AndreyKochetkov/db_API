@@ -17,7 +17,8 @@ def create_thread(data):
     try:
         query = get_query_id_user_by_email(data["user"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
@@ -34,7 +35,8 @@ def create_thread(data):
         query = get_query_id_forum_by_short_name(data["forum"])
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select forum failed"}
 
@@ -74,7 +76,8 @@ def create_thread(data):
         query.add_insert("thread", data.items())
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "insert failed"}
     try:
@@ -83,7 +86,8 @@ def create_thread(data):
         cursor.execute(query.get())
 
         thread_id = cursor.fetchone()[0]
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
@@ -97,7 +101,8 @@ def create_thread(data):
             except:
                 cursor.close()
                 return {'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}
-    except:
+    except Exception as e:
+        print str(e)
         data["is_deleted"] = 0
 
     ##################### response #####################

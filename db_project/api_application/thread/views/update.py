@@ -17,19 +17,23 @@ def update(request):
             "message": request_data["message"],
             "slug": request_data["slug"],
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["thread"] = int(data["thread"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
     try:
         data["message"] = str(data["message"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "message isnt correct"}))
     try:
         data["slug"] = str(data["slug"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "slug isnt correct"}))
 
     response = update_thread(data)

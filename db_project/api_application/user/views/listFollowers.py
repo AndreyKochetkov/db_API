@@ -14,7 +14,8 @@ def listFollowers(request):
         data = {
             "user": str(request.GET.get("user"))
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["user"]:

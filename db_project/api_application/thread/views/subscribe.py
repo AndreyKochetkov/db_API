@@ -15,12 +15,14 @@ def subscribe(request):
 
         user_mail = str(request_data["user"])
         thread_id = request_data["thread"]
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     try:
         thread_id = int(thread_id)
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     response = subscribe_user(thread_id, user_mail)

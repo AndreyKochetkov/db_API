@@ -16,15 +16,18 @@ def vote(request):
             "post": request_data["post"],
             "vote": request_data["vote"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["post"] = int(data["post"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "post isnt int"}))
     try:
         data["vote"] = int(data["vote"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "vote isnt int"}))
 
     response = vote_post(data)

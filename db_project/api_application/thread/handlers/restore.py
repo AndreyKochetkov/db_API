@@ -13,13 +13,15 @@ def restore_thread(data):
     try:
         query = get_query_restore_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "restore thread failed"}
     try:
         query = get_query_restore_post_for_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "restore post failed"}
 

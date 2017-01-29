@@ -19,7 +19,8 @@ def details(request):
                                    'response': 'id of post not found in request'}))
     try:
         post = int(post)
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'id isn\'t int'}))
     related = request.GET.getlist('related')

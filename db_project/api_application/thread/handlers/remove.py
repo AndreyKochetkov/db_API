@@ -13,13 +13,15 @@ def remove_thread(data):
     try:
         query = get_query_remove_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "remove thread failed"}
     try:
         query = get_query_remove_post_for_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "remove post failed"}
 

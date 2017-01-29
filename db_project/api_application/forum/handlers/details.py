@@ -17,7 +17,8 @@ def get_detail_forum(short_name, related):
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'forum not found'}
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select forum'}

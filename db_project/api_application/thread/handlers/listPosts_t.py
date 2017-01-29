@@ -5,7 +5,6 @@ from api_application.post.utils import get_query_list_root_posts, get_query_list
 
 
 def get_list_posts_t(data):
-
     cursor = connection.cursor()
     code = Code
     has_limit = data.get("limit", False)
@@ -17,7 +16,8 @@ def get_list_posts_t(data):
             return {'code': code.OK,
                     'response': []}
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select root posts'}
@@ -78,17 +78,17 @@ def get_list_posts_t(data):
                         if has_limit:
                             if data["limit"] < add_child_index:
                                 cursor.close()
-                                response = response[:data["limit"] ]
+                                response = response[:data["limit"]]
                                 return {'code': code.OK,
                                         'response': response}
 
-
-            except:
+            except Exception as e:
+                print str(e)
                 cursor.close()
                 return {'code': code.UNKNOWN_ERROR,
                         'response': 'failed select child posts'}
-    except IndexError:
-        response = response[:data["limit"] ]
+    except IndexError as e:
+        response = response[:data["limit"]]
         cursor.close()
         return {'code': code.OK,
                 'response': response}

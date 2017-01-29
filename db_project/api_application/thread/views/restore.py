@@ -15,11 +15,13 @@ def restore(request):
         data = {
             "thread": request_data["thread"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["thread"] = int(data["thread"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     response = restore_thread(data)

@@ -13,7 +13,8 @@ def restore_post(data):
     try:
         query = get_query_restore_post_for_id(post)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update post delete failed"}
 
@@ -21,14 +22,16 @@ def restore_post(data):
         query = get_query_thread_of_post_by_id(post)
         cursor.execute(query.get())
         thread = cursor.fetchone()[0]
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 
     try:
         query = get_query_increment_posts(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update thread failed"}
 

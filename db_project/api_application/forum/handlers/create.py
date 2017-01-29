@@ -12,7 +12,8 @@ def create_forum(data):
     try:
         query = get_query_id_user_by_email(data["user"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select user failed"}
 
@@ -25,7 +26,8 @@ def create_forum(data):
         query.add_insert("forum", data.items())
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "short_name or name exist"}
     try:
@@ -34,7 +36,8 @@ def create_forum(data):
         cursor.execute(query.get())
 
         forum_id = cursor.fetchone()[0]
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "select last id failed"}
 

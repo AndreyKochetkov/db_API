@@ -22,7 +22,8 @@ def create(request):
             "slug": request_data["slug"],
             "date": request_data["date"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
 
@@ -31,7 +32,8 @@ def create(request):
         is_deleted = bool(request_data["isDeleted"])
         data["isDeleted"] = is_deleted
         # TODO: check to no bool
-    except:
+    except Exception as e:
+        print str(e)
         pass
 
     response = create_thread(data)

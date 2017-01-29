@@ -14,7 +14,8 @@ def subscribe_user(thread, user):
         query.add_insert("subscribe", (("user", user), ("thread", thread)))
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 

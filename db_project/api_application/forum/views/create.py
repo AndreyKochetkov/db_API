@@ -17,7 +17,8 @@ def create(request):
             "short_name": request_data["short_name"],
             "user": request_data["user"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     response = create_forum(data)

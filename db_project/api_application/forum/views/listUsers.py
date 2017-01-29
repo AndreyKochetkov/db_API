@@ -14,7 +14,8 @@ def listUsers(request):
         data = {
             "forum": str(request.GET.get("forum"))
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
 
     if not data["forum"]:

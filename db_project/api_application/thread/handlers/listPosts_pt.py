@@ -15,7 +15,8 @@ def get_list_posts_pt(data):
             return {'code': code.OK,
                     'response': []}
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select posts'}
@@ -70,11 +71,12 @@ def get_list_posts_pt(data):
                             "parent": post[14]
                         })
 
-            except:
+            except Exception as e:
+                print str(e)
                 cursor.close()
                 return {'code': code.UNKNOWN_ERROR,
                         'response': 'failed select child posts'}
-    except IndexError:
+    except IndexError as e:
         cursor.close()
         return {'code': code.OK,
                 'response': response}

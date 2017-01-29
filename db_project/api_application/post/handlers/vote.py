@@ -16,7 +16,8 @@ def vote_post(data):
             cursor.close()
             return {'code': code.NOT_CORRECT, "response": "vote must be 1 or -1"}
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "vote post delete failed"}
 

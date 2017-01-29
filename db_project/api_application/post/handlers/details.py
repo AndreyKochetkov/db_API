@@ -27,7 +27,8 @@ def get_detail_post(post, related=None):
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'post not found'}
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select post'}

@@ -12,7 +12,8 @@ def close_thread(data):
     try:
         query = get_query_close_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "close thread failed"}
 

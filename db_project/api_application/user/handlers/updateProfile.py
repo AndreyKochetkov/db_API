@@ -13,7 +13,8 @@ def update_user(data):
     try:
         query = get_query_update_user(user, data["about"], data["name"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update user delete failed"}
 

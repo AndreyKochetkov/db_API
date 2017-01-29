@@ -13,7 +13,8 @@ def update_post(data):
     try:
         query = get_query_update_post(post, data["message"])
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "update post delete failed"}
 

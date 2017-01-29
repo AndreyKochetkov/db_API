@@ -16,7 +16,8 @@ def unfollow_user(follower, followee):
         query.add_where_condition(" follower = \"{}\" and following = \"{}\" ".format(follower, followee))
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "delete failed, user  not found"}
 

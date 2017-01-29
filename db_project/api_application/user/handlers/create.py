@@ -12,7 +12,8 @@ def create_user(data):
         query.add_insert("user", data.items())
         cursor.execute(query.get())
     # if insert failed, that means the user with this name is existed
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return None
 
@@ -40,7 +41,8 @@ def create_user(data):
         response["id"] = user_id
 
     # unknown error
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return None
 

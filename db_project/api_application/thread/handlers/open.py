@@ -12,7 +12,8 @@ def open_thread(data):
     try:
         query = get_query_open_thread(thread)
         cursor.execute(query.get())
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR, "response": "open thread failed"}
 

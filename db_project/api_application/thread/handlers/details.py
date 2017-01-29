@@ -23,7 +23,8 @@ def get_detail_thread(id_thread, related=None):
             cursor.close()
             return {'code': code.NOT_FOUND,
                     'response': 'thread not found'}
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select thread'}

@@ -18,7 +18,8 @@ def listPosts(request):
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
     try:
         data["thread"] = int(data["thread"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "thread isnt int"}))
 
     ##################### optional arguments   #####################
@@ -31,7 +32,8 @@ def listPosts(request):
     if limit is not None:
         try:
             data["limit"] = int(limit)
-        except:
+        except Exception as e:
+            print str(e)
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "limit isnt int"}))
 
     order = request.GET.get("order")

@@ -20,7 +20,8 @@ def create(request):
             "about": request_data["about"]
         }
     # except if we have invalid json
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "failed loads"}))
 
     # try to get optional parameter
@@ -36,7 +37,8 @@ def create(request):
         else:
             return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "don't correct"}))
     # except if we have not an optional parameter
-    except:
+    except Exception as e:
+        print str(e)
         data["isAnonymous"] = 0
 
     # insert user in db

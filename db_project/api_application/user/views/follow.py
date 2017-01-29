@@ -15,7 +15,8 @@ def follow(request):
 
         follower = request_data["follower"]
         followee = request_data["followee"]
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
 
     response = follow_user(follower, followee)

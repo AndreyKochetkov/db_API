@@ -15,11 +15,13 @@ def remove(request):
         data = {
             "post": request_data["post"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
     try:
         data["post"] = int(data["post"])
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT, "response": "post isnt int"}))
 
     response = remove_post(data)

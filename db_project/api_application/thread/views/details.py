@@ -16,7 +16,8 @@ def details(request):
                                    'response': 'id of thread not found in request'}))
     try:
         id_thread = int(id_thread)
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_CORRECT,
                                    'response': 'id isn\'t int'}))
     related = request.GET.getlist('related')

@@ -12,7 +12,8 @@ def get_detail_user(email):
             cursor.close()
             return None
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return None
 
@@ -26,18 +27,21 @@ def validate_user(user):
         return None
     try:
         following = user[6].split(',')
-    except:
+    except Exception as e:
+        print str(e)
         following = []
     try:
         followers = user[7].split(',')
-    except:
+    except Exception as e:
+        print str(e)
         followers = []
     try:
         subscriptions = user[8].split(',')
         new_subs = []
         for sub in subscriptions:
             new_subs.append(int(sub))
-    except:
+    except Exception as e:
+        print str(e)
         new_subs = []
 
     response = {

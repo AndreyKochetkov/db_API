@@ -15,7 +15,8 @@ def follow_user(follower, followee):
         query.add_insert("follow", (("follower", follower), ("following", followee)))
         cursor.execute(query.get())
 
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.NOT_FOUND, "response": "insert failed, user or thread not found"}
 

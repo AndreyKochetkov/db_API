@@ -20,7 +20,8 @@ def get_list(data):
             cursor.close()
             return {'code': code.OK,
                     'response': []}
-    except:
+    except Exception as e:
+        print str(e)
         cursor.close()
         return {'code': code.UNKNOWN_ERROR,
                 'response': 'failed select posts'}

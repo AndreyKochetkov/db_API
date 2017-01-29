@@ -22,7 +22,8 @@ def create(request):
             "user": request_data["user"],
             "forum": request_data["forum"]
         }
-    except:
+    except Exception as e:
+        print str(e)
         return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads json"}))
 
     data["date"] = validate_date(data["date"])
