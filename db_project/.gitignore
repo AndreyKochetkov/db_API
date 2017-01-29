@@ -1,2 +1,3 @@
 /test_p.py
 /*.pyc
+*.DS_Store.py
