@@ -9,33 +9,30 @@ from api_application.thread.handlers.create import create_thread
 
 @csrf_exempt
 def create(request):
+    code = Code
     try:
-        code = Code
-        try:
-            request_data = loads(request.body)
+        request_data = loads(request.body)
 
-            data = {
-                "forum": request_data["forum"],
-                "title": request_data["title"],
-                "isClosed": bool(request_data["isClosed"]),
-                "user": request_data["user"],
-                "message": request_data["message"],
-                "slug": request_data["slug"],
-                "date": request_data["date"]
-            }
-        except:
-            return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
-
-
-            ##################### optional arguments / remove thread  #####################
-        try:
-            is_deleted = bool(request_data["isDeleted"])
-            data["isDeleted"] = is_deleted
-            # TODO: check to no bool
-        except:
-            pass
-
-        response = create_thread(data)
-        return HttpResponse(dumps(response))
+        data = {
+            "forum": request_data["forum"],
+            "title": request_data["title"],
+            "isClosed": bool(request_data["isClosed"]),
+            "user": request_data["user"],
+            "message": request_data["message"],
+            "slug": request_data["slug"],
+            "date": request_data["date"]
+        }
     except:
-        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))
+        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads"}))
+
+
+        ##################### optional arguments / remove thread  #####################
+    try:
+        is_deleted = bool(request_data["isDeleted"])
+        data["isDeleted"] = is_deleted
+        # TODO: check to no bool
+    except:
+        pass
+
+    response = create_thread(data)
+    return HttpResponse(dumps(response))

@@ -8,36 +8,33 @@ from api_application.user.handlers.listPosts import get_list_of_posts
 
 @csrf_exempt
 def listPosts(request):
+    code = Code
     try:
-        code = Code
-        try:
-            data = {
-                "user": str(request.GET.get("user"))
-            }
-        except:
-            return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
-
-        if not data["user"]:
-            return HttpResponse(dumps({'code': code.NOT_CORRECT,
-                                       'response': 'incorrect suer format'}))
-
-        ##################### optional arguments   #####################
-
-        since = request.GET.get("since")
-        if since is not None:
-            data["since"] = since
-        limit = request.GET.get("limit")
-        if limit is not None:
-            data["limit"] = limit
-
-        order = request.GET.get("order")
-        if order is not None:
-            data["order"] = str(order)
-        else:
-            data["order"] = "desc"
-
-
-        response = get_list_of_posts(data)
-        return HttpResponse(dumps(response))
+        data = {
+            "user": str(request.GET.get("user"))
+        }
     except:
-        return HttpResponse(dumps({"code": 4, "response": "error gunicorn"}))
+        return HttpResponse(dumps({'code': code.NOT_VALID, "response": "failed loads "}))
+
+    if not data["user"]:
+        return HttpResponse(dumps({'code': code.NOT_CORRECT,
+                                   'response': 'incorrect suer format'}))
+
+    ##################### optional arguments   #####################
+
+    since = request.GET.get("since")
+    if since is not None:
+        data["since"] = since
+    limit = request.GET.get("limit")
+    if limit is not None:
+        data["limit"] = limit
+
+    order = request.GET.get("order")
+    if order is not None:
+        data["order"] = str(order)
+    else:
+        data["order"] = "desc"
+
+
+    response = get_list_of_posts(data)
+    return HttpResponse(dumps(response))
