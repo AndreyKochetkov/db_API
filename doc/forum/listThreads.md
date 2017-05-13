@@ -1,11 +1,11 @@
-#Forum.listThreads
+# Forum.listThreads
 Get threads from this forum
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include forums created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -20,7 +20,7 @@ Get threads from this forum
    ```array``` include related entities. Possible values: ```['user', 'forum']```. Default: []
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` forum short_name
