@@ -5,7 +5,7 @@
 * документация к API
 
 
-##FAQ
+## FAQ
 1. Если создаваемый объект\связь уже существует?
   - Ответ этим уже созданным объектом для всех сущностей, кроме юзера. В случае юзера вернуть ошибку (см. п. 4 и 2)
 
@@ -43,20 +43,20 @@
 11. Как провести нагрузочное тестирование локально?
   - python perf_test.py  -l --address=127.0.0.1:5000 заполнит вашу базу согласно опциям из конфига (см. test.conf) и создаст файлик me_httperf_scenario. Его нужно подавать на вход httperf так: httperf --hog --client=0/1 --server=127.0.0.1 --port=5000 --uri=/ --send-buffer=4096 --recv-buffer=16384  --add-header='Content-Type:application/json\n' --wsesslog=100,0.000,me_httperf_scenario . Запускать на 5 минут, смотреть на Reply rate -> avg 
 
-#API Documentation
+# API Documentation
 
-##Общие
+## Общие
 * [clear](./doc/clear.md)
 * [status](./doc/status.md)
 
-##Forum
+## Forum
 * [create](./doc/forum/create.md)
 * [details](./doc/forum/details.md)
 * [listPosts](./doc/forum/listPosts.md)
 * [listThreads](./doc/forum/listThreads.md)
 * [listUsers](./doc/forum/listUsers.md)
 
-##Post
+## Post
 * [create](./doc/post/create.md)
 * [details](./doc/post/details.md)
 * [list](./doc/post/list.md)
@@ -65,7 +65,7 @@
 * [update](./doc/post/update.md)
 * [vote](./doc/post/vote.md)
 
-##User
+## User
 * [create](./doc/user/create.md)
 * [details](./doc/user/details.md)
 * [follow](./doc/user/follow.md)
@@ -75,7 +75,7 @@
 * [unfollow](./doc/user/unfollow.md)
 * [updateProfile](./doc/user/updateProfile.md)
 
-##Thread
+## Thread
 * [close](./doc/thread/close.md)
 * [create](./doc/thread/create.md)
 * [details](./doc/thread/details.md)
