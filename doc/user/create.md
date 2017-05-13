@@ -1,20 +1,20 @@
-#User.create
+# User.create
 Create new user
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * isAnonymous
 
    ```bool``` is user marked as anonymous
 
 
-###Requried
+### Requried
 * username
 
    ```str``` user name
