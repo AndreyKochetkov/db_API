@@ -1,17 +1,17 @@
-#Thread.details
+# Thread.details
 Get thread details
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * related
 
    ```array``` include related entities. Possible values: ```['user', 'forum']```. Default: []
 
 
-###Requried
+### Requried
 * thread
 
    ```int``` thread id of this post
