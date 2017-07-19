@@ -1,11 +1,11 @@
-#Post.list
+# Post.list
 List posts
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include posts created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -18,7 +18,7 @@ List posts
    ```str``` sort order (by date). Possible values: ```['desc', 'asc']```. Default: 'desc'
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` forum short_name
