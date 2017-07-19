@@ -1,11 +1,11 @@
-#Thread.list
+# Thread.list
 List threads
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include threads created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -17,7 +17,7 @@ List threads
    ```str``` sort order (by date). Possible values: ```['desc', 'asc']```. Default: 'desc'
 
 
-###Requried
+### Requried
 * user
 
    ```str``` founder email
