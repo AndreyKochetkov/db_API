@@ -1,16 +1,16 @@
-#User.updateProfile
+# User.updateProfile
 Update profile
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * about
 
    ```str``` user info
