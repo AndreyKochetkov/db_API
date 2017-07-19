@@ -1,11 +1,11 @@
-#Thread.listPosts
+# Thread.listPosts
 Get posts from this thread
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include threads created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -20,7 +20,7 @@ Get posts from this thread
    ```str``` sort order. Possible values: ```['desc', 'asc']```. Default: 'desc'
 
 
-###Requried
+### Requried
 * thread
 
    ```int``` thread id of this post
