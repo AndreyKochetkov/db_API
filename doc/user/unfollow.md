@@ -1,16 +1,16 @@
-#User.unfollow
+# User.unfollow
 Mark one user as not folowing other user anymore
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * follower
 
    ```str``` follower email
