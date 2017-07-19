@@ -1,16 +1,16 @@
-#Post.remove
+# Post.remove
 Mark post as removed
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * post
 
    ```int``` post id
