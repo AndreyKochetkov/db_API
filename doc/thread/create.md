@@ -1,20 +1,20 @@
-#Thread.create
+# Thread.create
 Create new thread
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * isDeleted
 
    ```bool``` is thread marked as deleted
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` parent forum short_name
