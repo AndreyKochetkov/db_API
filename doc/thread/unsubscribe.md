@@ -1,16 +1,16 @@
-#Thread.unsubscribe
+# Thread.unsubscribe
 Unsubscribe user from this thread
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * user
 
    ```str``` founder email
