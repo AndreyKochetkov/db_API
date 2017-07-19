@@ -1,13 +1,13 @@
-#User.details
+# User.details
 Get user details
 
 ## Supported request methods 
 * GET
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * user
 
    ```str``` user email
