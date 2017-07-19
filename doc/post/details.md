@@ -1,17 +1,17 @@
-#Post.details
+# Post.details
 Get post details
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * related
 
    ```array``` include related entities. Possible values: ```['user', 'thread', 'forum']```. Default: []
 
 
-###Requried
+### Requried
 * post
 
    ```int``` post id
