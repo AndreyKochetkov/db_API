@@ -1,16 +1,16 @@
-#Forum.create
+# Forum.create
 Create new forum
 
 ## Supported request methods 
 * POST
-
-##Supported formats
+ 
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Required
+### Required
 * name
 
    ```str``` forum name
