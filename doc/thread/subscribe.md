@@ -1,16 +1,16 @@
-#Thread.subscribe
+# Thread.subscribe
 Subscribe user to this thread
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * user
 
    ```str``` subscriber email
