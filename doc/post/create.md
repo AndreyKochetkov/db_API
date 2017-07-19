@@ -1,14 +1,14 @@
-#Post.create
+# Post.create
 Create new post
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * parent
 
    ```int``` id of parent post. Default: None
@@ -29,7 +29,7 @@ Create new post
    ```bool``` is post marked as deleted
 
 
-###Requried
+### Requried
 * date
 
    ```str``` date of creation. Format: 'YYYY-MM-DD hh-mm-ss'
