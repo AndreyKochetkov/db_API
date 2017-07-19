@@ -1,16 +1,16 @@
-#Post.restore
+# Post.restore
 Cancel removal
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * post
 
    ```int``` post id
