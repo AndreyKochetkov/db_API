@@ -1,13 +1,13 @@
-#Status
+# Status
 Show status info: maps table name to number of rows in that table
 
 ## Supported request methods 
 * GET
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 Requesting http://some.host.ru/db/api/status/ :
 ```json
