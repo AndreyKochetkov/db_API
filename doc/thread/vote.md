@@ -1,16 +1,16 @@
-#Thread.vote
+# Thread.vote
 like/dislike thread
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * vote
 
    ```int``` like/dislike. Possible values: [1, -1]
