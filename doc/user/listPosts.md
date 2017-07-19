@@ -1,11 +1,11 @@
-#User.listPosts
+# User.listPosts
 Get posts from this user
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include posts from this user created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -18,7 +18,7 @@ Get posts from this user
    ```str``` sort order (by date). Possible values: ```['desc', 'asc']```. Default: 'desc'
 
 
-###Requried
+### Requried
 * user
 
    ```str``` user email
