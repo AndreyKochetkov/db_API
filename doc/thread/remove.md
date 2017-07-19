@@ -1,16 +1,16 @@
-#Thread.remove
+# Thread.remove
 Mark thread as removed
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * thread
 
    ```int``` thread id of this post
