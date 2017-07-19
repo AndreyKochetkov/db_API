@@ -4,10 +4,10 @@ Truncate all tables.
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 Requesting http://some.host.ru/db/api/clear/ with **{}**:
 ```json
