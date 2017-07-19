@@ -1,16 +1,16 @@
-#Thread.update
+# Thread.update
 Edit thread
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * message
 
    ```str``` thread message
