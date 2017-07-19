@@ -1,11 +1,11 @@
-#Forum.listUsers
+# Forum.listUsers
 Get user with posts on this forum
 
 ## Supported request methods 
 * GET
-
-##Arguments
-###Optional
+ 
+## Arguments
+### Optional
 * limit
 
    ```int``` return limit
@@ -17,7 +17,7 @@ Get user with posts on this forum
    ```int``` return entities in interval [since_id, max_id]
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` forum short_name
