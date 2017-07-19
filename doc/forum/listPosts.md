@@ -1,11 +1,11 @@
-#Forum.listPosts
+# Forum.listPosts
 Get posts from this forum
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * since
 
    ```str``` include forums created since date. Format: 'YYYY-MM-DD hh-mm-ss'
@@ -21,7 +21,7 @@ Get posts from this forum
    ```array``` include related entities. Possible values: ```['thread', 'forum', 'user']```. Default: []
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` forum short_name
