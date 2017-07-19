@@ -1,16 +1,16 @@
-#Thread.open
+# Thread.open
 Mark thread as opened
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * thread
 
    ```int``` thread id of this post
