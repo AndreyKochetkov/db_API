@@ -1,16 +1,16 @@
-#User.follow
+# User.follow
 Mark one user as folowing other user
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * follower
 
    ```str``` follower email
