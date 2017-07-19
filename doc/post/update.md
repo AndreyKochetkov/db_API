@@ -1,16 +1,16 @@
-#Post.update
+# Post.update
 Edit post
 
 ## Supported request methods 
 * POST
 
-##Supported formats
+## Supported formats
 * json
 
-##Arguments
+## Arguments
 
 
-###Requried
+### Requried
 * post
 
    ```int``` post id
