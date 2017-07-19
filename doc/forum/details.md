@@ -1,17 +1,17 @@
-#Forum.details
+# Forum.details
 Get forum details
 
 ## Supported request methods 
 * GET
 
-##Arguments
-###Optional
+## Arguments
+### Optional
 * related
 
    ```array``` include related entities. Possible values: ```['user',]```. Default: []
 
 
-###Requried
+### Requried
 * forum
 
    ```str``` forum short_name
